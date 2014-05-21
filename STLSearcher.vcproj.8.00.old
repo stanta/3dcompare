@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="8,00"
+	Name="STLSearcher"
+	ProjectGUID="{EB75A068-EC5C-3C47-AFC0-CECB9C5CA98E}"
+	Keyword="Qt4VSv1.0">
+	<Platforms>
+		<Platform
+			Name="Win32" />
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="."
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="1"
+			IntermediateDirectory="debug\"
+			UseOfMfc="0">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtCore&quot;,&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtNetwork&quot;,&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtGui&quot;,&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtOpenGL&quot;,&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtSql&quot;,&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include&quot;,&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\ActiveQt&quot;,&quot;debug&quot;,..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\mkspecs\win32-msvc2008"
+				AdditionalOptions="-Zm200 -w34100 -w34189"
+				AssemblerListingLocation="debug\"
+				BufferSecurityCheck="false"
+				DebugInformationFormat="3"
+				ExceptionHandling="1"
+				GeneratePreprocessedFile="0"
+				ObjectFile="debug\"
+				Optimization ="4"
+				PreprocessorDefinitions="_WINDOWS,UNICODE,WIN32,QT_LARGEFILE_SUPPORT,QT_DLL,QT_SQL_LIB,QT_OPENGL_LIB,QT_GUI_LIB,QT_NETWORK_LIB,QT_CORE_LIB,QT_HAVE_MMX,QT_HAVE_3DNOW,QT_HAVE_SSE,QT_HAVE_MMXEXT,QT_HAVE_SSE2,QT_THREAD_SUPPORT"
+				ProgramDataBaseFileName=".\"
+				RuntimeLibrary="3"
+				RuntimeTypeInfo="true"
+				SuppressStartupBanner="true"
+				TreatWChar_tAsBuiltInType="false"
+				WarningLevel="3" />
+			<Tool
+				Name="VCCustomBuildTool" />
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="glu32.lib opengl32.lib gdi32.lib user32.lib c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\lib\qtmaind.lib C:/QtSDK/Desktop/Qt/4.7.3/msvc2008/plugins/sqldrivers/qsqlite4.lib c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\lib\QtSqld4.lib c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\lib\QtOpenGLd4.lib c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\lib\QtGuid4.lib c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\lib\QtNetworkd4.lib c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\lib\QtCored4.lib"
+				AdditionalLibraryDirectories="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\lib,C:\OpenSSL-Win32_full\lib"
+				AdditionalOptions="&quot;/MANIFESTDEPENDENCY:type=&apos;win32&apos; name=&apos;Microsoft.Windows.Common-Controls&apos; version=&apos;6.0.0.0&apos; publicKeyToken=&apos;6595b64144ccf1df&apos; language=&apos;*&apos; processorArchitecture=&apos;*&apos;&quot;"
+				GenerateDebugInformation="true"
+				IgnoreImportLibrary="true"
+				LinkTimeCodeGeneration="0"
+				OutputFile="debug\bin\STLSearcher.exe"
+				ProgramDatabaseFile=""
+				SubSystem="2"
+				SuppressStartupBanner="true" />
+			<Tool
+				Name="VCMIDLTool"
+				DefaultCharType="0"
+				EnableErrorChecks="1"
+				WarningLevel="0" />
+			<Tool
+				Name="VCPostBuildEventTool" />
+			<Tool
+				Name="VCPreBuildEventTool" />
+			<Tool
+				Name="VCPreLinkEventTool" />
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_WINDOWS,UNICODE,WIN32,QT_LARGEFILE_SUPPORT,QT_DLL,QT_SQL_LIB,QT_OPENGL_LIB,QT_GUI_LIB,QT_NETWORK_LIB,QT_CORE_LIB,QT_HAVE_MMX,QT_HAVE_3DNOW,QT_HAVE_SSE,QT_HAVE_MMXEXT,QT_HAVE_SSE2,QT_THREAD_SUPPORT,_DEBUG" />
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="."
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="1"
+			IntermediateDirectory="release\"
+			UseOfMfc="0">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtCore&quot;,&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtNetwork&quot;,&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtGui&quot;,&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtOpenGL&quot;,&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtSql&quot;,&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include&quot;,&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\ActiveQt&quot;,&quot;release&quot;,..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\mkspecs\win32-msvc2008"
+				AdditionalOptions="-Zm200 -w34100 -w34189"
+				AssemblerListingLocation="release\"
+				BufferSecurityCheck="false"
+				DebugInformationFormat="0"
+				ExceptionHandling="1"
+				GeneratePreprocessedFile="0"
+				ObjectFile="release\"
+				Optimization ="2"
+				PreprocessorDefinitions="QT_NO_DEBUG,NDEBUG,_WINDOWS,UNICODE,WIN32,QT_LARGEFILE_SUPPORT,QT_DLL,QT_NO_DEBUG,QT_SQL_LIB,QT_OPENGL_LIB,QT_GUI_LIB,QT_NETWORK_LIB,QT_CORE_LIB,QT_HAVE_MMX,QT_HAVE_3DNOW,QT_HAVE_SSE,QT_HAVE_MMXEXT,QT_HAVE_SSE2,QT_THREAD_SUPPORT,NDEBUG"
+				ProgramDataBaseFileName=".\"
+				RuntimeLibrary="2"
+				RuntimeTypeInfo="true"
+				SuppressStartupBanner="true"
+				TreatWChar_tAsBuiltInType="false"
+				WarningLevel="3" />
+			<Tool
+				Name="VCCustomBuildTool" />
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="glu32.lib opengl32.lib gdi32.lib user32.lib c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\lib\qtmain.lib C:/QtSDK/Desktop/Qt/4.7.3/msvc2008/plugins/sqldrivers/qsqlite4.lib c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\lib\QtSql4.lib c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\lib\QtOpenGL4.lib c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\lib\QtGui4.lib c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\lib\QtNetwork4.lib c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\lib\QtCore4.lib"
+				AdditionalLibraryDirectories="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\lib,C:\OpenSSL-Win32_full\lib"
+				AdditionalOptions="&quot;/MANIFESTDEPENDENCY:type=&apos;win32&apos; name=&apos;Microsoft.Windows.Common-Controls&apos; version=&apos;6.0.0.0&apos; publicKeyToken=&apos;6595b64144ccf1df&apos; language=&apos;*&apos; processorArchitecture=&apos;*&apos;&quot;"
+				GenerateDebugInformation="false"
+				IgnoreImportLibrary="true"
+				LinkIncremental="1"
+				LinkTimeCodeGeneration="0"
+				OutputFile="release\bin\STLSearcher.exe"
+				ProgramDatabaseFile=""
+				SubSystem="2"
+				SuppressStartupBanner="true" />
+			<Tool
+				Name="VCMIDLTool"
+				DefaultCharType="0"
+				EnableErrorChecks="1"
+				WarningLevel="0" />
+			<Tool
+				Name="VCPostBuildEventTool" />
+			<Tool
+				Name="VCPreBuildEventTool" />
+			<Tool
+				Name="VCPreLinkEventTool" />
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="QT_NO_DEBUG,NDEBUG,_WINDOWS,UNICODE,WIN32,QT_LARGEFILE_SUPPORT,QT_DLL,QT_NO_DEBUG,QT_SQL_LIB,QT_OPENGL_LIB,QT_GUI_LIB,QT_NETWORK_LIB,QT_CORE_LIB,QT_HAVE_MMX,QT_HAVE_3DNOW,QT_HAVE_SSE,QT_HAVE_MMXEXT,QT_HAVE_SSE2,QT_THREAD_SUPPORT" />
+		</Configuration>
+	</Configurations>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
+			<File
+				RelativePath="STL_source\CMatrix.cpp" />
+			<File
+				RelativePath="STL_source\Complex.cpp" />
+			<File
+				RelativePath="STL_source\File.cpp" />
+			<File
+				RelativePath="STL_source\LZH.cpp" />
+			<File
+				RelativePath="STL_source\Mathem.cpp" />
+			<File
+				RelativePath="STL_source\Matrix.cpp" />
+			<File
+				RelativePath="STL_source\Polyhedron.cpp" />
+			<File
+				RelativePath="STL_source\PseudoFile.cpp" />
+			<File
+				RelativePath="STL_source\Rand.cpp" />
+			<File
+				RelativePath="STL_source\RealFile.cpp" />
+			<File
+				RelativePath="STL_source\ShevList.cpp" />
+			<File
+				RelativePath="STL_source\TRANS.cpp" />
+			<File
+				RelativePath="STL_source\Timer.cpp" />
+			<File
+				RelativePath="STL_source\Trian2d.cpp" />
+			<File
+				RelativePath="STL_source\Vector2d.cpp" />
+			<File
+				RelativePath="STL_source\Vector2f.cpp" />
+			<File
+				RelativePath="STL_source\Vector3d.cpp" />
+			<File
+				RelativePath="STL_source\Vector3f" />
+			<File
+				RelativePath="STL_source\acoder.cpp" />
+			<File
+				RelativePath="STL_source\approx.cpp" />
+			<File
+				RelativePath="STL_source\approx2d.cpp" />
+			<File
+				RelativePath="STL_source\approx3d.cpp" />
+			<File
+				RelativePath="STL_source\asc.cpp" />
+			<File
+				RelativePath="axisglwidget.cpp" />
+			<File
+				RelativePath="axisgroupbox.cpp" />
+			<File
+				RelativePath="dimensionsgroupbox.cpp" />
+			<File
+				RelativePath="STL_source\fileBMP.cpp" />
+			<File
+				RelativePath="STL_source\fileOBJ.cpp" />
+			<File
+				RelativePath="STL_source\fileOBJplh.cpp" />
+			<File
+				RelativePath="STL_source\filePYH.cpp" />
+			<File
+				RelativePath="STL_source\fileSTL.cpp" />
+			<File
+				RelativePath="STL_source\func1d.cpp" />
+			<File
+				RelativePath="STL_source\func2d.cpp" />
+			<File
+				RelativePath="STL_source\func3d.cpp" />
+			<File
+				RelativePath="glmdichild.cpp" />
+			<File
+				RelativePath="glwidget.cpp" />
+			<File
+				RelativePath="STL_source\intersect2d.cpp" />
+			<File
+				RelativePath="STL_source\intersect3d.cpp" />
+			<File
+				RelativePath="STL_source\ioSTL.cpp" />
+			<File
+				RelativePath="main.cpp" />
+			<File
+				RelativePath="meshinformationgroupbox.cpp" />
+			<File
+				RelativePath="STL_source\moment2d.cpp" />
+			<File
+				RelativePath="STL_source\moment3d.cpp" />
+			<File
+				RelativePath="STL_source\opti2d.cpp" />
+			<File
+				RelativePath="STL_source\opti2d_2.cpp" />
+			<File
+				RelativePath="STL_source\opti2d_4.cpp" />
+			<File
+				RelativePath="STL_source\opti3d.cpp" />
+			<File
+				RelativePath="STL_source\opti3d_2.cpp" />
+			<File
+				RelativePath="propertiesgroupbox.cpp" />
+			<File
+				RelativePath="stlfile.cpp" />
+			<File
+				RelativePath="stlsearcher.cpp" />
+			<File
+				RelativePath="stlviewer.cpp" />
+			<File
+				RelativePath="STL_source\swdict.cpp" />
+			<File
+				RelativePath="STL_source\trian3d.cpp" />
+			<File
+				RelativePath="vector.cpp" />
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
+			<File
+				RelativePath="STL_source\CMatrix.h" />
+			<File
+				RelativePath="STL_source\Complex.h" />
+			<File
+				RelativePath="STL_source\DoubleN.h" />
+			<File
+				RelativePath="STL_source\File.h" />
+			<File
+				RelativePath="STL_source\LZH.h" />
+			<File
+				RelativePath="STL_source\Mathem.h" />
+			<File
+				RelativePath="STL_source\Matrix.h" />
+			<File
+				RelativePath="STL_source\Poly3gon.h" />
+			<File
+				RelativePath="STL_source\Polyhedron.h" />
+			<File
+				RelativePath="STL_source\PseudoFile.h" />
+			<File
+				RelativePath="STL_source\Rand.h" />
+			<File
+				RelativePath="STL_source\RealFile.h" />
+			<File
+				RelativePath="STL_source\SemiRib.h" />
+			<File
+				RelativePath="STL_source\ShevArray.h" />
+			<File
+				RelativePath="STL_source\ShevArray2.h" />
+			<File
+				RelativePath="STL_source\ShevList.h" />
+			<File
+				RelativePath="STL_source\TUNE.h" />
+			<File
+				RelativePath="STL_source\Template.h" />
+			<File
+				RelativePath="STL_source\Timer.h" />
+			<File
+				RelativePath="STL_source\Trans.h" />
+			<File
+				RelativePath="STL_source\Trian2d.h" />
+			<File
+				RelativePath="STL_source\Vector2d.h" />
+			<File
+				RelativePath="STL_source\Vector2f.h" />
+			<File
+				RelativePath="STL_source\Vector2i.h" />
+			<File
+				RelativePath="STL_source\Vector3d.h" />
+			<File
+				RelativePath="STL_source\Vector3f.h" />
+			<File
+				RelativePath="STL_source\Vector4d.h" />
+			<File
+				RelativePath="STL_source\Vert.h" />
+			<File
+				RelativePath="STL_source\WireModel.h" />
+			<File
+				RelativePath="STL_source\acoder.h" />
+			<File
+				RelativePath="STL_source\approx.h" />
+			<File
+				RelativePath="STL_source\approx2d.h" />
+			<File
+				RelativePath="STL_source\approx3d.h" />
+			<File
+				RelativePath="STL_source\atrian.h" />
+			<File
+				RelativePath="axisglwidget.h">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe;axisglwidget.h"
+						CommandLine="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtCore&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtNetwork&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtGui&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtOpenGL&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtSql&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\ActiveQt&quot; -I&quot;debug&quot; -I..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\mkspecs\win32-msvc2008 -D_MSC_VER=1500 -DWIN32 axisglwidget.h -o debug\moc_axisglwidget.cpp"
+						Description="MOC axisglwidget.h"
+						Outputs="debug\moc_axisglwidget.cpp"
+						Path="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin" />
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe;axisglwidget.h"
+						CommandLine="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtCore&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtNetwork&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtGui&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtOpenGL&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtSql&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\ActiveQt&quot; -I&quot;release&quot; -I..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\mkspecs\win32-msvc2008 -D_MSC_VER=1500 -DWIN32 axisglwidget.h -o release\moc_axisglwidget.cpp"
+						Description="MOC axisglwidget.h"
+						Outputs="release\moc_axisglwidget.cpp"
+						Path="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin" />
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="axisgroupbox.h">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe;axisgroupbox.h"
+						CommandLine="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtCore&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtNetwork&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtGui&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtOpenGL&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtSql&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\ActiveQt&quot; -I&quot;debug&quot; -I..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\mkspecs\win32-msvc2008 -D_MSC_VER=1500 -DWIN32 axisgroupbox.h -o debug\moc_axisgroupbox.cpp"
+						Description="MOC axisgroupbox.h"
+						Outputs="debug\moc_axisgroupbox.cpp"
+						Path="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin" />
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe;axisgroupbox.h"
+						CommandLine="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtCore&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtNetwork&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtGui&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtOpenGL&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtSql&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\ActiveQt&quot; -I&quot;release&quot; -I..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\mkspecs\win32-msvc2008 -D_MSC_VER=1500 -DWIN32 axisgroupbox.h -o release\moc_axisgroupbox.cpp"
+						Description="MOC axisgroupbox.h"
+						Outputs="release\moc_axisgroupbox.cpp"
+						Path="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin" />
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="dimensionsgroupbox.h">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe;dimensionsgroupbox.h"
+						CommandLine="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtCore&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtNetwork&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtGui&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtOpenGL&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtSql&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\ActiveQt&quot; -I&quot;debug&quot; -I..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\mkspecs\win32-msvc2008 -D_MSC_VER=1500 -DWIN32 dimensionsgroupbox.h -o debug\moc_dimensionsgroupbox.cpp"
+						Description="MOC dimensionsgroupbox.h"
+						Outputs="debug\moc_dimensionsgroupbox.cpp"
+						Path="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin" />
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe;dimensionsgroupbox.h"
+						CommandLine="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtCore&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtNetwork&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtGui&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtOpenGL&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtSql&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\ActiveQt&quot; -I&quot;release&quot; -I..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\mkspecs\win32-msvc2008 -D_MSC_VER=1500 -DWIN32 dimensionsgroupbox.h -o release\moc_dimensionsgroupbox.cpp"
+						Description="MOC dimensionsgroupbox.h"
+						Outputs="release\moc_dimensionsgroupbox.cpp"
+						Path="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin" />
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="STL_source\fileBMP.h" />
+			<File
+				RelativePath="STL_source\fileOBJ.h" />
+			<File
+				RelativePath="STL_source\fileOBJplh.h" />
+			<File
+				RelativePath="STL_source\filePYH.h" />
+			<File
+				RelativePath="STL_source\fileSTL.h" />
+			<File
+				RelativePath="STL_source\func1d.h" />
+			<File
+				RelativePath="STL_source\func1t.h" />
+			<File
+				RelativePath="STL_source\func2d.h" />
+			<File
+				RelativePath="STL_source\func2t.h" />
+			<File
+				RelativePath="STL_source\func3d.h" />
+			<File
+				RelativePath="glmdichild.h">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe;glmdichild.h"
+						CommandLine="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtCore&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtNetwork&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtGui&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtOpenGL&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtSql&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\ActiveQt&quot; -I&quot;debug&quot; -I..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\mkspecs\win32-msvc2008 -D_MSC_VER=1500 -DWIN32 glmdichild.h -o debug\moc_glmdichild.cpp"
+						Description="MOC glmdichild.h"
+						Outputs="debug\moc_glmdichild.cpp"
+						Path="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin" />
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe;glmdichild.h"
+						CommandLine="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtCore&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtNetwork&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtGui&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtOpenGL&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtSql&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\ActiveQt&quot; -I&quot;release&quot; -I..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\mkspecs\win32-msvc2008 -D_MSC_VER=1500 -DWIN32 glmdichild.h -o release\moc_glmdichild.cpp"
+						Description="MOC glmdichild.h"
+						Outputs="release\moc_glmdichild.cpp"
+						Path="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin" />
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="glwidget.h">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe;glwidget.h"
+						CommandLine="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtCore&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtNetwork&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtGui&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtOpenGL&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtSql&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\ActiveQt&quot; -I&quot;debug&quot; -I..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\mkspecs\win32-msvc2008 -D_MSC_VER=1500 -DWIN32 glwidget.h -o debug\moc_glwidget.cpp"
+						Description="MOC glwidget.h"
+						Outputs="debug\moc_glwidget.cpp"
+						Path="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin" />
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe;glwidget.h"
+						CommandLine="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtCore&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtNetwork&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtGui&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtOpenGL&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtSql&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\ActiveQt&quot; -I&quot;release&quot; -I..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\mkspecs\win32-msvc2008 -D_MSC_VER=1500 -DWIN32 glwidget.h -o release\moc_glwidget.cpp"
+						Description="MOC glwidget.h"
+						Outputs="release\moc_glwidget.cpp"
+						Path="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin" />
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="STL_source\heap.h" />
+			<File
+				RelativePath="STL_source\intersect2d.h" />
+			<File
+				RelativePath="STL_source\intersect3d.h" />
+			<File
+				RelativePath="STL_source\lists.h" />
+			<File
+				RelativePath="STL_source\median.h" />
+			<File
+				RelativePath="meshinformationgroupbox.h">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe;meshinformationgroupbox.h"
+						CommandLine="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtCore&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtNetwork&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtGui&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtOpenGL&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtSql&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\ActiveQt&quot; -I&quot;debug&quot; -I..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\mkspecs\win32-msvc2008 -D_MSC_VER=1500 -DWIN32 meshinformationgroupbox.h -o debug\moc_meshinformationgroupbox.cpp"
+						Description="MOC meshinformationgroupbox.h"
+						Outputs="debug\moc_meshinformationgroupbox.cpp"
+						Path="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin" />
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe;meshinformationgroupbox.h"
+						CommandLine="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtCore&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtNetwork&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtGui&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtOpenGL&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtSql&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\ActiveQt&quot; -I&quot;release&quot; -I..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\mkspecs\win32-msvc2008 -D_MSC_VER=1500 -DWIN32 meshinformationgroupbox.h -o release\moc_meshinformationgroupbox.cpp"
+						Description="MOC meshinformationgroupbox.h"
+						Outputs="release\moc_meshinformationgroupbox.cpp"
+						Path="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin" />
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="STL_source\moment2d.h" />
+			<File
+				RelativePath="STL_source\moment3d.h" />
+			<File
+				RelativePath="STL_source\opti2d.h" />
+			<File
+				RelativePath="STL_source\opti3d.h" />
+			<File
+				RelativePath="propertiesgroupbox.h">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe;propertiesgroupbox.h"
+						CommandLine="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtCore&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtNetwork&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtGui&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtOpenGL&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtSql&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\ActiveQt&quot; -I&quot;debug&quot; -I..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\mkspecs\win32-msvc2008 -D_MSC_VER=1500 -DWIN32 propertiesgroupbox.h -o debug\moc_propertiesgroupbox.cpp"
+						Description="MOC propertiesgroupbox.h"
+						Outputs="debug\moc_propertiesgroupbox.cpp"
+						Path="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin" />
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe;propertiesgroupbox.h"
+						CommandLine="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtCore&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtNetwork&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtGui&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtOpenGL&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtSql&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\ActiveQt&quot; -I&quot;release&quot; -I..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\mkspecs\win32-msvc2008 -D_MSC_VER=1500 -DWIN32 propertiesgroupbox.h -o release\moc_propertiesgroupbox.cpp"
+						Description="MOC propertiesgroupbox.h"
+						Outputs="release\moc_propertiesgroupbox.cpp"
+						Path="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin" />
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="STL_source\sorting.h" />
+			<File
+				RelativePath="stlfile.h" />
+			<File
+				RelativePath="stlsearcher.h" />
+			<File
+				RelativePath="stlviewer.h">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe;stlviewer.h"
+						CommandLine="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtCore&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtNetwork&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtGui&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtOpenGL&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtSql&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\ActiveQt&quot; -I&quot;debug&quot; -I..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\mkspecs\win32-msvc2008 -D_MSC_VER=1500 -DWIN32 stlviewer.h -o debug\moc_stlviewer.cpp"
+						Description="MOC stlviewer.h"
+						Outputs="debug\moc_stlviewer.cpp"
+						Path="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin" />
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe;stlviewer.h"
+						CommandLine="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtCore&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtNetwork&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtGui&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtOpenGL&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\QtSql&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include&quot; -I&quot;..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\include\ActiveQt&quot; -I&quot;release&quot; -I..\..\..\QtSDK\Desktop\Qt\4.7.3\msvc2008\mkspecs\win32-msvc2008 -D_MSC_VER=1500 -DWIN32 stlviewer.h -o release\moc_stlviewer.cpp"
+						Description="MOC stlviewer.h"
+						Outputs="release\moc_stlviewer.cpp"
+						Path="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin" />
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="STL_source\swdict.h" />
+			<File
+				RelativePath="STL_source\trian2t.h" />
+			<File
+				RelativePath="STL_source\trian3d.h" />
+			<File
+				RelativePath="STL_source\typedef.h" />
+			<File
+				RelativePath="vector.h" />
+		</Filter>
+		<Filter
+			Name="Generated Files"
+			Filter="cpp;c;cxx;moc;h;def;odl;idl;res;"
+			UniqueIdentifier="{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}">
+			<File
+				RelativePath="debug\moc_axisglwidget.cpp">
+				<FileConfiguration
+					Name="Release|Win32"
+					ExcludedFromBuild="true" />
+			</File>
+			<File
+				RelativePath="release\moc_axisglwidget.cpp">
+				<FileConfiguration
+					Name="Debug|Win32"
+					ExcludedFromBuild="true" />
+			</File>
+			<File
+				RelativePath="debug\moc_axisgroupbox.cpp">
+				<FileConfiguration
+					Name="Release|Win32"
+					ExcludedFromBuild="true" />
+			</File>
+			<File
+				RelativePath="release\moc_axisgroupbox.cpp">
+				<FileConfiguration
+					Name="Debug|Win32"
+					ExcludedFromBuild="true" />
+			</File>
+			<File
+				RelativePath="debug\moc_dimensionsgroupbox.cpp">
+				<FileConfiguration
+					Name="Release|Win32"
+					ExcludedFromBuild="true" />
+			</File>
+			<File
+				RelativePath="release\moc_dimensionsgroupbox.cpp">
+				<FileConfiguration
+					Name="Debug|Win32"
+					ExcludedFromBuild="true" />
+			</File>
+			<File
+				RelativePath="debug\moc_glmdichild.cpp">
+				<FileConfiguration
+					Name="Release|Win32"
+					ExcludedFromBuild="true" />
+			</File>
+			<File
+				RelativePath="release\moc_glmdichild.cpp">
+				<FileConfiguration
+					Name="Debug|Win32"
+					ExcludedFromBuild="true" />
+			</File>
+			<File
+				RelativePath="debug\moc_glwidget.cpp">
+				<FileConfiguration
+					Name="Release|Win32"
+					ExcludedFromBuild="true" />
+			</File>
+			<File
+				RelativePath="release\moc_glwidget.cpp">
+				<FileConfiguration
+					Name="Debug|Win32"
+					ExcludedFromBuild="true" />
+			</File>
+			<File
+				RelativePath="debug\moc_meshinformationgroupbox.cpp">
+				<FileConfiguration
+					Name="Release|Win32"
+					ExcludedFromBuild="true" />
+			</File>
+			<File
+				RelativePath="release\moc_meshinformationgroupbox.cpp">
+				<FileConfiguration
+					Name="Debug|Win32"
+					ExcludedFromBuild="true" />
+			</File>
+			<File
+				RelativePath="debug\moc_propertiesgroupbox.cpp">
+				<FileConfiguration
+					Name="Release|Win32"
+					ExcludedFromBuild="true" />
+			</File>
+			<File
+				RelativePath="release\moc_propertiesgroupbox.cpp">
+				<FileConfiguration
+					Name="Debug|Win32"
+					ExcludedFromBuild="true" />
+			</File>
+			<File
+				RelativePath="debug\moc_stlviewer.cpp">
+				<FileConfiguration
+					Name="Release|Win32"
+					ExcludedFromBuild="true" />
+			</File>
+			<File
+				RelativePath="release\moc_stlviewer.cpp">
+				<FileConfiguration
+					Name="Debug|Win32"
+					ExcludedFromBuild="true" />
+			</File>
+			<File
+				RelativePath="debug\qrc_stlsearcher.cpp">
+				<FileConfiguration
+					Name="Release|Win32"
+					ExcludedFromBuild="true" />
+			</File>
+			<File
+				RelativePath="release\qrc_stlsearcher.cpp">
+				<FileConfiguration
+					Name="Debug|Win32"
+					ExcludedFromBuild="true" />
+			</File>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="qrc;*"
+			UniqueIdentifier="{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}"
+			ParseFiles="false">
+			<File
+				RelativePath="Images\arrow_out.png" />
+			<File
+				RelativePath="Images\arrow_rotate_clockwise.png" />
+			<File
+				RelativePath="Images\back_view.png" />
+			<File
+				RelativePath="Images\bottom_view.png" />
+			<File
+				RelativePath="Images\folder.png" />
+			<File
+				RelativePath="Images\front_view.png" />
+			<File
+				RelativePath="Images\left_view.png" />
+			<File
+				RelativePath="Images\magnifier_zoom_in.png" />
+			<File
+				RelativePath="Images\magnifier_zoom_out.png" />
+			<File
+				RelativePath="Images\new_doc.png" />
+			<File
+				RelativePath="Images\right_view.png" />
+			<File
+				RelativePath="Images\save.png" />
+			<File
+				RelativePath="Images\stl.png" />
+			<File
+				RelativePath="stlsearcher.qrc">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\rcc.exe;Images\arrow_out.png;Images\arrow_rotate_clockwise.png;Images\back_view.png;Images\bottom_view.png;Images\folder.png;Images\front_view.png;Images\left_view.png;Images\magnifier_zoom_in.png;Images\magnifier_zoom_out.png;Images\new_doc.png;Images\right_view.png;Images\save.png;Images\stl.png;Images\top_front_left_view.png;Images\top_view.png;Images\wireframe.png;stlsearcher.qrc"
+						CommandLine="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\rcc.exe -name stlsearcher stlsearcher.qrc -o debug\qrc_stlsearcher.cpp"
+						Description="RCC stlsearcher.qrc"
+						Outputs="debug\qrc_stlsearcher.cpp"
+						Path="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin" />
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						AdditionalDependencies="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\rcc.exe;Images\arrow_out.png;Images\arrow_rotate_clockwise.png;Images\back_view.png;Images\bottom_view.png;Images\folder.png;Images\front_view.png;Images\left_view.png;Images\magnifier_zoom_in.png;Images\magnifier_zoom_out.png;Images\new_doc.png;Images\right_view.png;Images\save.png;Images\stl.png;Images\top_front_left_view.png;Images\top_view.png;Images\wireframe.png;stlsearcher.qrc"
+						CommandLine="C:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin\rcc.exe -name stlsearcher stlsearcher.qrc -o release\qrc_stlsearcher.cpp"
+						Description="RCC stlsearcher.qrc"
+						Outputs="release\qrc_stlsearcher.cpp"
+						Path="c:\QtSDK\Desktop\Qt\4.7.3\msvc2008\bin" />
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="Images\top_front_left_view.png" />
+			<File
+				RelativePath="Images\top_view.png" />
+			<File
+				RelativePath="Images\wireframe.png" />
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
