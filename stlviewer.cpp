@@ -242,9 +242,9 @@ void STLViewer::updateMenus()
 		axisGroupBox->setXRotation(activeGLMdiChild()->getXRot());
 		axisGroupBox->setYRotation(activeGLMdiChild()->getYRot());
 		axisGroupBox->setZRotation(activeGLMdiChild()->getZRot());
-		dimensionsGroupBox->setValues(activeGLMdiChild()->getStats());
+		dimensionsGroupBox->setValues(activeGLMdiChild()->getSearcherStats());
 		meshInformationGroupBox->setValues(activeGLMdiChild()->getStats());
-		propertiesGroupBox->setValues(activeGLMdiChild()->getStats());
+		propertiesGroupBox->setValues(activeGLMdiChild()->getSearcherStats());
 	} else {
 		axisGroupBox->reset();
 		dimensionsGroupBox->reset();

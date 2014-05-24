@@ -20,8 +20,11 @@ public:
 	bool saveFile(const QString &fileName);
 	bool saveImage();
 	QString userFriendlyCurrentFile();
-	QString currentFile() { return m_curFile; };
-	StlFile::Stats getStats() const { return m_stlFile->getStats(); };
+	QString currentFile() { return m_curFile; }
+	Stl_Stats getStats() const { return m_stlFile->getStats(); }
+	StlSearcher::UnitStats getSearcherStats() const
+	{ return m_stlSearcher->getStats(); }
+
 signals:
 	void	mouseButtonPressed(Qt::MouseButtons button);
 	void	mouseButtonReleased(Qt::MouseButtons button);
@@ -39,8 +42,8 @@ private:
 public:
 	bool	m_isUntitled;
 private:
-	StlFile *	m_stlFile;
-	QString		m_curFile;
+	StlFile *		m_stlFile;
+	QString			m_curFile;
 	StlSearcher*	m_stlSearcher;
 };
 

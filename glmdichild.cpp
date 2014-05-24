@@ -82,7 +82,7 @@ bool GLMdiChild::saveAs()
 		QString filterAll = tr("All files (*.*)");
 		QString filterSel;
 		// Set the current file type as default
-		if (m_stlFile->getStats().type == StlFile::ASCII)
+		if (m_stlFile->getStats().type == ASCII)
 			filterSel = filterAscii;
 		else
 			filterSel = filterBin;
@@ -92,9 +92,9 @@ bool GLMdiChild::saveAs()
 			return false;
 		// Change the current file type to the one chosen by the user
 		if (filterSel == filterBin)
-			m_stlFile->setFormat(StlFile::BINARY);
+			m_stlFile->setFormat(BINARY);
 		else if (filterSel == filterAscii)
-			m_stlFile->setFormat(StlFile::ASCII);
+			m_stlFile->setFormat(ASCII);
 		// Save the file
 		return saveFile(fileName);
 	}

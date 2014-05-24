@@ -42,6 +42,7 @@ QSize GLWidget::sizeHint() const
 void GLWidget::makeObjectFromStlFile(StlFile *stlfile)
 {
 	StlSearcher* searcher = stlfile->getSearcher ();
+	
 /*	
 	GLuint m_object = glGenLists(2);
 	if(m_object != 0) { // check for "out of memory" or some other error
@@ -104,7 +105,7 @@ void GLWidget::makeObjectFromStlFile(StlFile *stlfile)
 	//glBegin(GL_LINES);
 	// glEnd();
 
-
+/*
 	xPos = (stlfile->getStats().max.x+stlfile->getStats().min.x)/2;
 	yPos = (stlfile->getStats().max.y+stlfile->getStats().min.y)/2;
 	zPos = (stlfile->getStats().max.z+stlfile->getStats().min.z)/2;
@@ -112,6 +113,16 @@ void GLWidget::makeObjectFromStlFile(StlFile *stlfile)
 			qAbs(stlfile->getStats().max.x-stlfile->getStats().min.x),
 			qAbs(stlfile->getStats().max.y-stlfile->getStats().min.y)),
 			qAbs(stlfile->getStats().max.z-stlfile->getStats().min.z));
+*/
+	xPos = (searcher->getStats().max.x + searcher->getStats().min.x)/2;
+	yPos = (searcher->getStats().max.y + searcher->getStats().min.y)/2;
+	zPos = (searcher->getStats().max.z + searcher->getStats().min.z)/2;
+	
+	defaultZoomFactor = qMax(qMax(
+			qAbs(searcher->getStats().max.x - searcher->getStats().min.x),
+			qAbs(searcher->getStats().max.y - searcher->getStats().min.y)),
+			qAbs(searcher->getStats().max.z - searcher->getStats().min.z));
+	
 	zoomInc = defaultZoomFactor/1000;
 	
 	setDefaultView();

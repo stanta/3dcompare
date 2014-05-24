@@ -159,7 +159,8 @@ void StlFile::readData(int firstFacet, int first)
 		getline(m_file, line);
 	}
 	Facet facet;
-	for (int i = firstFacet; i < m_stats.numFacets; i++) {
+	for (int i = firstFacet; i < m_stats.numFacets; i++)
+	{
 		if (m_stats.type == BINARY) {  // Read a single facet from a binary .STL file
 			facet.normal.x = readFloatFromBytes(m_file);
 			facet.normal.y = readFloatFromBytes(m_file);
@@ -186,60 +187,62 @@ void StlFile::readData(int firstFacet, int first)
 			m_file >> junk;
 			m_file >> facet.vector[2].x >> facet.vector[2].y >> facet.vector[2].z;
 			m_file >> junk >> junk;
+		}
+		// Write the facet into memory.
+		m_facets[i] = facet;
+
+		// While we are going through all of the facets, let's find the
+		// maximum and minimum values for x, y, and z
+		// Initialize the max and min values the first time through
+		if (first) {
+			m_stats.max.x = facet.vector[0].x;
+			m_stats.min.x = facet.vector[0].x;
+			m_stats.max.y = facet.vector[0].y;
+			m_stats.min.y = facet.vector[0].y;
+			m_stats.max.z = facet.vector[0].z;
+			m_stats.min.z = facet.vector[0].z;
+	  	  
+			float xDiff = qAbs(facet.vector[0].x - facet.vector[1].x);
+			float yDiff = qAbs(facet.vector[0].y - facet.vector[1].y);
+			float zDiff = qAbs(facet.vector[0].z - facet.vector[1].z);
+			float maxDiff = qMax(xDiff, yDiff);
+			maxDiff = qMax(zDiff, maxDiff);
+			m_stats.shortestEdge = maxDiff;
+			first = 0;
+		}
+		// Now find the max and min values
+		m_stats.max.x = qMax(m_stats.max.x, facet.vector[0].x);
+		m_stats.min.x = qMin(m_stats.min.x, facet.vector[0].x);
+		m_stats.max.y = qMax(m_stats.max.y, facet.vector[0].y);
+		m_stats.min.y = qMin(m_stats.min.y, facet.vector[0].y);
+		m_stats.max.z = qMax(m_stats.max.z, facet.vector[0].z);
+		m_stats.min.z = qMin(m_stats.min.z, facet.vector[0].z);
+
+		m_stats.max.x = qMax(m_stats.max.x, facet.vector[1].x);
+		m_stats.min.x = qMin(m_stats.min.x, facet.vector[1].x);
+		m_stats.max.y = qMax(m_stats.max.y, facet.vector[1].y);
+		m_stats.min.y = qMin(m_stats.min.y, facet.vector[1].y);
+		m_stats.max.z = qMax(m_stats.max.z, facet.vector[1].z);
+		m_stats.min.z = qMin(m_stats.min.z, facet.vector[1].z);
+
+		m_stats.max.x = qMax(m_stats.max.x, facet.vector[2].x);
+		m_stats.min.x = qMin(m_stats.min.x, facet.vector[2].x);
+		m_stats.max.y = qMax(m_stats.max.y, facet.vector[2].y);
+		m_stats.min.y = qMin(m_stats.min.y, facet.vector[2].y);
+		m_stats.max.z = qMax(m_stats.max.z, facet.vector[2].z);
+		m_stats.min.z = qMin(m_stats.min.z, facet.vector[2].z);
 	}
-    // Write the facet into memory.
-    m_facets[i] = facet;
-	m_searcher->setSphericalItem(&facet.vector[0],  i);
-    // While we are going through all of the facets, let's find the
-    // maximum and minimum values for x, y, and z
-    // Initialize the max and min values the first time through
-    if (first) {
-	    m_stats.max.x = facet.vector[0].x;
-	    m_stats.min.x = facet.vector[0].x;
-	    m_stats.max.y = facet.vector[0].y;
-	    m_stats.min.y = facet.vector[0].y;
-	    m_stats.max.z = facet.vector[0].z;
-	    m_stats.min.z = facet.vector[0].z;
-  	  
-	    float xDiff = qAbs(facet.vector[0].x - facet.vector[1].x);
-	    float yDiff = qAbs(facet.vector[0].y - facet.vector[1].y);
-	    float zDiff = qAbs(facet.vector[0].z - facet.vector[1].z);
-	    float maxDiff = qMax(xDiff, yDiff);
-	    maxDiff = qMax(zDiff, maxDiff);
-	    m_stats.shortestEdge = maxDiff;
-		first = 0;
-    }
-    // Now find the max and min values
-    m_stats.max.x = qMax(m_stats.max.x, facet.vector[0].x);
-    m_stats.min.x = qMin(m_stats.min.x, facet.vector[0].x);
-    m_stats.max.y = qMax(m_stats.max.y, facet.vector[0].y);
-    m_stats.min.y = qMin(m_stats.min.y, facet.vector[0].y);
-    m_stats.max.z = qMax(m_stats.max.z, facet.vector[0].z);
-    m_stats.min.z = qMin(m_stats.min.z, facet.vector[0].z);
-
-    m_stats.max.x = qMax(m_stats.max.x, facet.vector[1].x);
-    m_stats.min.x = qMin(m_stats.min.x, facet.vector[1].x);
-    m_stats.max.y = qMax(m_stats.max.y, facet.vector[1].y);
-    m_stats.min.y = qMin(m_stats.min.y, facet.vector[1].y);
-    m_stats.max.z = qMax(m_stats.max.z, facet.vector[1].z);
-    m_stats.min.z = qMin(m_stats.min.z, facet.vector[1].z);
-
-    m_stats.max.x = qMax(m_stats.max.x, facet.vector[2].x);
-    m_stats.min.x = qMin(m_stats.min.x, facet.vector[2].x);
-    m_stats.max.y = qMax(m_stats.max.y, facet.vector[2].y);
-    m_stats.min.y = qMin(m_stats.min.y, facet.vector[2].y);
-    m_stats.max.z = qMax(m_stats.max.z, facet.vector[2].z);
-    m_stats.min.z = qMin(m_stats.min.z, facet.vector[2].z);
-  }
-  m_stats.size.x = m_stats.max.x - m_stats.min.x;
-  m_stats.size.y = m_stats.max.y - m_stats.min.y;
-  m_stats.size.z = m_stats.max.z - m_stats.min.z;
-  m_stats.boundingDiameter =  sqrt(m_stats.size.x * m_stats.size.x +
+	m_stats.size.x = m_stats.max.x - m_stats.min.x;
+	m_stats.size.y = m_stats.max.y - m_stats.min.y;
+	m_stats.size.z = m_stats.max.z - m_stats.min.z;
+	m_stats.boundingDiameter =  sqrt(m_stats.size.x * m_stats.size.x +
                                    m_stats.size.y * m_stats.size.y +
                                    m_stats.size.z * m_stats.size.z);
-  m_stats.numPoints = getNumPoints();
-  m_stats.surface = getSurface();
-  m_stats.volume = getVolume();
+	m_stats.numPoints = getNumPoints();
+	//m_stats.surface = getSurface();
+	//m_stats.volume = getVolume();
+	// Set unit Sphere data(cennter of mass ...)
+	m_searcher->setUnitSphere(m_facets, &m_stats);
 }
 
 int StlFile::readIntFromBytes(::std::ifstream& file) 
@@ -400,7 +403,7 @@ int StlFile::getNumPoints()
 	::std::unique(vectors.begin(), vectors.end(), equalVectors);
 	return vectors.size();
 }
-
+/*
 float StlFile::getVolume()
 {
 	Vector p0;
@@ -425,7 +428,8 @@ float StlFile::getVolume()
 
 	return volume;
 }
-
+*/
+/*
 float StlFile::getSurface()
 {
 	float surface = 0.0;
@@ -438,62 +442,4 @@ float StlFile::getSurface()
 
 	return surface;
 }
-
-float StlFile::getArea(Facet *facet) 
-{
-	float cross[3][3];
-	float sum[3];
-	float n[3];
-	for (int i = 0; i < 3; i++) {
-		cross[i][0] = ((facet->vector[i].y * facet->vector[(i + 1) % 3].z) -
-		(facet->vector[i].z * facet->vector[(i + 1) % 3].y));
-		cross[i][1] = ((facet->vector[i].z * facet->vector[(i + 1) % 3].x) -
-		(facet->vector[i].x * facet->vector[(i + 1) % 3].z));
-		cross[i][2] = ((facet->vector[i].x * facet->vector[(i + 1) % 3].y) -
-		(facet->vector[i].y * facet->vector[(i + 1) % 3].x));
-	}
-	sum[0] = cross[0][0] + cross[1][0] + cross[2][0];
-	sum[1] = cross[0][1] + cross[1][1] + cross[2][1];
-	sum[2] = cross[0][2] + cross[1][2] + cross[2][2];
-	// This should already be done.  But just in case, let's do it again
-	calculateNormal(n, facet);
-	normalizeVector(n);
-	float area = 0.5 * (n[0] * sum[0] + n[1] * sum[1] + n[2] * sum[2]);
-	return area;
-}
-
-void StlFile::calculateNormal(float normal[], Facet *facet) 
-{
-	float v1[3];
-	float v2[3];
-	v1[0] = facet->vector[1].x - facet->vector[0].x;
-	v1[1] = facet->vector[1].y - facet->vector[0].y;
-	v1[2] = facet->vector[1].z - facet->vector[0].z;
-	v2[0] = facet->vector[2].x - facet->vector[0].x;
-	v2[1] = facet->vector[2].y - facet->vector[0].y;
-	v2[2] = facet->vector[2].z - facet->vector[0].z;
-	normal[0] = (float)((double)v1[1] * (double)v2[2])
-		          - ((double)v1[2] * (double)v2[1]);
-	normal[1] = (float)((double)v1[2] * (double)v2[0])
-		          - ((double)v1[0] * (double)v2[2]);
-	normal[2] = (float)((double)v1[0] * (double)v2[1])
-			      - ((double)v1[1] * (double)v2[0]);
-}
-
-void StlFile::normalizeVector(float v[]) 
-{
-	double length = sqrt((double)v[0] * (double)v[0]
-                       + (double)v[1] * (double)v[1]
-                          + (double)v[2] * (double)v[2]);
-	float minNormalLength = 0.000000000001f;
-	if (length < minNormalLength) {
-		v[0] = 1.0;
-		v[1] = 0.0;
-		v[2] = 0.0;
-		return;
-	}  
-	double factor = 1.0 / length;
-	v[0] *= factor;
-	v[1] *= factor;
-	v[2] *= factor;
-}
+*/

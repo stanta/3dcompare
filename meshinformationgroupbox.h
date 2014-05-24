@@ -9,18 +9,17 @@
 
 class QLabel;
 
-class MeshInformationGroupBox : public QGroupBox {
-
+class MeshInformationGroupBox : public QGroupBox 
+{
   Q_OBJECT
+public:
+	MeshInformationGroupBox(QWidget *parent = 0);
+	~MeshInformationGroupBox();
+	void reset();
+	void setValues(const Stl_Stats stats);
 
- public:
-  MeshInformationGroupBox(QWidget *parent = 0);
-  ~MeshInformationGroupBox();
-  void reset();
-  void setValues(const StlFile::Stats stats);
-
- private:
-  QLabel *numFacets, *numPoints;
+private:
+	QLabel *numFacets, *numPoints;
 };
 
 #endif  // MESHINFORMATIONGROUPBOX_H

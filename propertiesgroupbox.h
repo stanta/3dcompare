@@ -4,23 +4,21 @@
 #define PROPERTIESGROUPBOX_H
 
 #include <QtGui/QGroupBox>
-
-#include "stlfile.h"
+#include "stlsearcher.h"
 
 class QLabel;
 
-class PropertiesGroupBox : public QGroupBox {
-
+class PropertiesGroupBox : public QGroupBox
+{
   Q_OBJECT
+public:
+	PropertiesGroupBox(QWidget *parent = 0);
+	~PropertiesGroupBox();
+	void reset();
+	void setValues(const StlSearcher::UnitStats stats);
 
- public:
-  PropertiesGroupBox(QWidget *parent = 0);
-  ~PropertiesGroupBox();
-  void reset();
-  void setValues(const StlFile::Stats stats);
-
- private:
-  QLabel *volume, *surface;
+	private:
+	QLabel *volume, *surface, *diameter;
 };
 
 #endif  // PROPERTIESGROUPBOX_H

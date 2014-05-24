@@ -1,8 +1,8 @@
 // Copyright (c) 2014 Andranik Abrahamyan
 
-#include <QtCore/QtGlobal>
-#include <QtGui/QApplication>
-#include <QErrorMessage>
+//#include <QtCore/QtGlobal>
+//#include <QtGui/QApplication>
+//#include <QErrorMessage>
 #include <math.h>
 #include <string>
 #include <algorithm>
@@ -13,6 +13,8 @@
 StlSearcher::StlSearcher()
 {
 	m_Spherical = 0;
+	m_maxRadial = 0;
+//	m_maxRadial = 0;
 }
 
 StlSearcher::~StlSearcher()
@@ -52,6 +54,99 @@ int	StlSearcher::getMinRadial(int ind)
 	return  2;
 }
 
+void	StlSearcher::setUnitSphere(Facet * facet, Stl_Stats * stats)
+{
+	// get 
+	facetMassCalc(facet, stats);
+	// change mesh center to the mass center.
+	for (int i = 0; i < stats->numFacets ; i++)
+	{
+		facet[i].vector[0].x -= m_UnitStats.centerOfMass.x;
+		facet[i].vector[0].y -= m_UnitStats.centerOfMass.y;
+		facet[i].vector[0].z -= m_UnitStats.centerOfMass.z;
+		facet[i].vector[1].x -= m_UnitStats.centerOfMass.x;
+		facet[i].vector[1].y -= m_UnitStats.centerOfMass.y;
+		facet[i].vector[1].z -= m_UnitStats.centerOfMass.z;
+		facet[i].vector[2].x -= m_UnitStats.centerOfMass.x;
+		facet[i].vector[2].y -= m_UnitStats.centerOfMass.y;
+		facet[i].vector[2].z -= m_UnitStats.centerOfMass.z;
+		
+		// set Spherical Item data and get m_maxRadial
+		setSphericalItem(facet[i].vector, i); 
+	}
+
+	// we have m_maxRadial, transform to unit mesh
+	m_UnitStats.surface = 0;
+	m_UnitStats.volume = 0;
+	for (int i = 0; i < stats->numFacets ; i++)
+	{
+		facet[i].vector[0].x /= m_maxRadial;
+		facet[i].vector[0].y /= m_maxRadial;
+		facet[i].vector[0].z /= m_maxRadial;
+		facet[i].vector[1].x /= m_maxRadial;
+		facet[i].vector[1].y /= m_maxRadial;
+		facet[i].vector[1].z /= m_maxRadial;
+		facet[i].vector[2].x /= m_maxRadial;
+		facet[i].vector[2].y /= m_maxRadial;
+		facet[i].vector[2].z /= m_maxRadial;
+		
+		// get volume of the unit mesh 
+		Facet fac = facet[i];
+		float	currentVolume;
+		currentVolume = (fac.vector[0].x * fac.vector[1].y * fac.vector[2].z -
+						 fac.vector[0].x * fac.vector[2].y * fac.vector[1].z - 
+						 fac.vector[1].x * fac.vector[0].y * fac.vector[2].z + 
+						 fac.vector[1].x * fac.vector[2].y * fac.vector[0].z + 
+						 fac.vector[2].x * fac.vector[0].y * fac.vector[1].z - 
+						 fac.vector[2].x * fac.vector[1].y * fac.vector[0].z) / 6;
+
+		m_UnitStats.volume += currentVolume;
+
+		// get surface of the unit mesh 
+		float area = getArea(&facet[i]);
+		m_UnitStats.surface += area;
+	}
+
+	if (m_UnitStats.surface < 0.0) 
+		m_UnitStats.surface = -m_UnitStats.surface;
+	// set min,max,size, boundingDiameter values 
+	m_UnitStats.min = stats->min /m_maxRadial;
+	m_UnitStats.max = stats->max /m_maxRadial;
+	m_UnitStats.size = stats->size /m_maxRadial;
+	m_UnitStats.boundingDiameter =  sqrt(m_UnitStats.size.x * m_UnitStats.size.x +
+                                   m_UnitStats.size.y * m_UnitStats.size.y +
+                                   m_UnitStats.size.z * m_UnitStats.size.z);
+}
+
+// facets total mass and center of mass calculation
+void	StlSearcher::facetMassCalc(Facet * pFacets, Stl_Stats * stats)
+{
+    double totalVolume = 0, currentVolume;
+    double xCenter = 0, yCenter = 0, zCenter = 0;
+	Vector	facetCenter;
+	Vector  totalCenter;
+
+    for (int i = 0; i < stats->numFacets ; i++)
+    {
+		Facet fac = pFacets[i];
+		currentVolume = (fac.vector[0].x * fac.vector[1].y * fac.vector[2].z -
+						 fac.vector[0].x * fac.vector[2].y * fac.vector[1].z - 
+						 fac.vector[1].x * fac.vector[0].y * fac.vector[2].z + 
+						 fac.vector[1].x * fac.vector[2].y * fac.vector[0].z + 
+						 fac.vector[2].x * fac.vector[0].y * fac.vector[1].z - 
+						 fac.vector[2].x * fac.vector[1].y * fac.vector[0].z) / 6;
+
+		totalVolume += currentVolume;
+        xCenter += ((fac.vector[0].x + fac.vector[1].x + fac.vector[2].x) / 4) * currentVolume;
+        yCenter += ((fac.vector[0].y + fac.vector[1].y + fac.vector[2].y) / 4) * currentVolume;
+        zCenter += ((fac.vector[0].z + fac.vector[1].z + fac.vector[2].z) / 4) * currentVolume;
+    }
+	m_UnitStats.volume = totalVolume;
+	m_UnitStats.centerOfMass.x = xCenter/totalVolume;
+	m_UnitStats.centerOfMass.y = yCenter/totalVolume;
+	m_UnitStats.centerOfMass.z = zCenter/totalVolume;
+}
+
 void	StlSearcher::setSphericalItem(Vector* vector, int ind)
 {
 	for (int i = 0; i < 3; i++) {
@@ -59,47 +154,69 @@ void	StlSearcher::setSphericalItem(Vector* vector, int ind)
 		m_Spherical[ind].radial[i] = sqrt(s);
 		m_Spherical[ind].azimuth[i] = atan2(vector[i].y ,vector[i].x);
 		m_Spherical[ind].polar[i] = acos(vector[i].z / m_Spherical[ind].radial[i]);
+		if (m_Spherical[ind].radial[i] > m_maxRadial)
+			m_maxRadial = m_Spherical[ind].radial[i];
 	}
-	int a  = 7;
+}
 
-	/*
-	double c[3];
-	double x[9];
-	double r[3];
-	double theta[6];
-	int i = 0;
-	for(int j = 0; j < 3;  j++)
-	{
-		x[i] = vector[j].x;
-		x[i+1] = vector[j].y;
-		x[i+2] = vector[j].z;
-		i+=3;
+
+float StlSearcher::getArea(Facet *facet) 
+{
+	float cross[3][3];
+	float sum[3];
+	float n[3];
+	for (int i = 0; i < 3; i++) {
+		cross[i][0] = ((facet->vector[i].y * facet->vector[(i + 1) % 3].z) -
+		(facet->vector[i].z * facet->vector[(i + 1) % 3].y));
+		cross[i][1] = ((facet->vector[i].z * facet->vector[(i + 1) % 3].x) -
+		(facet->vector[i].x * facet->vector[(i + 1) % 3].z));
+		cross[i][2] = ((facet->vector[i].x * facet->vector[(i + 1) % 3].y) -
+		(facet->vector[i].y * facet->vector[(i + 1) % 3].x));
 	}
-	cartesianToSphere(3,3, c, x, r, theta );
+	sum[0] = cross[0][0] + cross[1][0] + cross[2][0];
+	sum[1] = cross[0][1] + cross[1][1] + cross[2][1];
+	sum[2] = cross[0][2] + cross[1][2] + cross[2][2];
+	// This should already be done.  But just in case, let's do it again
+	calculateNormal(n, facet);
+	normalizeVector(n);
+	float area = 0.5 * (n[0] * sum[0] + n[1] * sum[1] + n[2] * sum[2]);
+	return area;
+}
 
-	m_Spherical[ind].radial[0] = float(r[0]);
-	m_Spherical[ind].radial[1] = float(r[1]);
-	m_Spherical[ind].radial[2] = float(r[2]);
+void StlSearcher::calculateNormal(float normal[], Facet *facet) 
+{
+	float v1[3];
+	float v2[3];
+	v1[0] = facet->vector[1].x - facet->vector[0].x;
+	v1[1] = facet->vector[1].y - facet->vector[0].y;
+	v1[2] = facet->vector[1].z - facet->vector[0].z;
+	v2[0] = facet->vector[2].x - facet->vector[0].x;
+	v2[1] = facet->vector[2].y - facet->vector[0].y;
+	v2[2] = facet->vector[2].z - facet->vector[0].z;
+	normal[0] = (float)((double)v1[1] * (double)v2[2])
+		          - ((double)v1[2] * (double)v2[1]);
+	normal[1] = (float)((double)v1[2] * (double)v2[0])
+		          - ((double)v1[0] * (double)v2[2]);
+	normal[2] = (float)((double)v1[0] * (double)v2[1])
+			      - ((double)v1[1] * (double)v2[0]);
+}
 
-	float k[3];	
-	k[0] = acos(x[2]/r[0]);
-	k[1] = acos(x[5]/r[1]);
-	k[2] = acos(x[8]/r[2]);
-	
-	float t[3];
-	t[0] = ::atan2 (x[1],x[0]);
-	t[1] = ::atan2 (x[4],x[3]);
-	t[2] = ::atan2 (x[7],x[6]);
-
-	//cartesianToSphere(3,1, c, x, r, theta );
-	//m_Spherical[ind].polar[0] = 
-	//m_Spherical[i].radial 
-	double a = k[0]/theta[1];
-	a = k[1]/theta[3];
-	a = k[2]/theta[5];
-
-*/
-
+void StlSearcher::normalizeVector(float v[]) 
+{
+	double length = sqrt((double)v[0] * (double)v[0]
+                       + (double)v[1] * (double)v[1]
+                          + (double)v[2] * (double)v[2]);
+	float minNormalLength = 0.000000000001f;
+	if (length < minNormalLength) {
+		v[0] = 1.0;
+		v[1] = 0.0;
+		v[2] = 0.0;
+		return;
+	}  
+	double factor = 1.0 / length;
+	v[0] *= factor;
+	v[1] *= factor;
+	v[2] *= factor;
 }
 //  Purpose:
 //    Cartesian to sphere coordinate transform.

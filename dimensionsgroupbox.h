@@ -4,25 +4,23 @@
 #define DIMENSIONSGROUPBOX_H
 
 #include <QtGui/QGroupBox>
-
-#include "stlfile.h"
+#include "stlsearcher.h"
 
 class QLabel;
 
-class DimensionsGroupBox : public QGroupBox {
+class DimensionsGroupBox : public QGroupBox
+{
+	Q_OBJECT
+public:
+	DimensionsGroupBox(QWidget *parent = 0);
+	~DimensionsGroupBox();
+	void reset();
+	void setValues(const StlSearcher::UnitStats  stats);
 
-  Q_OBJECT
-
- public:
-  DimensionsGroupBox(QWidget *parent = 0);
-  ~DimensionsGroupBox();
-  void reset();
-  void setValues(const StlFile::Stats stats);
-
- private:
-  QLabel *xMax, *xMin, *xDelta;
-  QLabel *yMax, *yMin, *yDelta;
-  QLabel *zMax, *zMin, *zDelta;
+private:
+	QLabel *xMax, *xMin, *xDelta;
+	QLabel *yMax, *yMin, *yDelta;
+	QLabel *zMax, *zMin, *zDelta;
 };
 
 #endif  // DIMENSIONSGROUPBOX_H

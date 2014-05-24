@@ -480,6 +480,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\types.h"
+				>
+			</File>
+			<File
 				RelativePath="vector.h"
 				>
 			</File>
@@ -490,10 +494,10 @@
 			UniqueIdentifier="{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}"
 			>
 			<File
-				RelativePath="release\moc_axisglwidget.cpp"
+				RelativePath="debug\moc_axisglwidget.cpp"
 				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Release|Win32"
 					ExcludedFromBuild="true"
 					>
 					<Tool
@@ -502,16 +506,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="debug\moc_axisglwidget.cpp"
-				>
-				<FileConfiguration
-					Name="Release|Win32"
-					ExcludedFromBuild="true"
-					>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="release\moc_axisgroupbox.cpp"
+				RelativePath="release\moc_axisglwidget.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -529,10 +524,13 @@
 					Name="Release|Win32"
 					ExcludedFromBuild="true"
 					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="release\moc_dimensionsgroupbox.cpp"
+				RelativePath="release\moc_axisgroupbox.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -550,10 +548,13 @@
 					Name="Release|Win32"
 					ExcludedFromBuild="true"
 					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="release\moc_glmdichild.cpp"
+				RelativePath="release\moc_dimensionsgroupbox.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -571,6 +572,21 @@
 					Name="Release|Win32"
 					ExcludedFromBuild="true"
 					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="release\moc_glmdichild.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -580,6 +596,9 @@
 					Name="Release|Win32"
 					ExcludedFromBuild="true"
 					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -587,6 +606,18 @@
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="debug\moc_meshinformationgroupbox.cpp"
+				>
+				<FileConfiguration
+					Name="Release|Win32"
 					ExcludedFromBuild="true"
 					>
 					<Tool
@@ -607,19 +638,10 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="debug\moc_meshinformationgroupbox.cpp"
+				RelativePath="debug\moc_propertiesgroupbox.cpp"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
-					ExcludedFromBuild="true"
-					>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="release\moc_propertiesgroupbox.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
 					ExcludedFromBuild="true"
 					>
 					<Tool
@@ -628,16 +650,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="debug\moc_propertiesgroupbox.cpp"
-				>
-				<FileConfiguration
-					Name="Release|Win32"
-					ExcludedFromBuild="true"
-					>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="release\moc_stlviewer.cpp"
+				RelativePath="release\moc_propertiesgroupbox.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -655,10 +668,13 @@
 					Name="Release|Win32"
 					ExcludedFromBuild="true"
 					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="release\qrc_stlsearcher.cpp"
+				RelativePath="release\moc_stlviewer.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -676,6 +692,21 @@
 					Name="Release|Win32"
 					ExcludedFromBuild="true"
 					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="release\qrc_stlsearcher.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
 				</FileConfiguration>
 			</File>
 		</Filter>
