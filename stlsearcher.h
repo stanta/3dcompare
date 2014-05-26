@@ -21,10 +21,13 @@ public:
 
 	struct UnitStats // unit Sphere data
 	{
-		Vector		max;
+		Vector		max;			// max size 
 		Vector		min;			// min size 
 		Vector		size;			// delta from max and min sizes
-		float		boundingDiameter; // bounding box diameter
+		float		box_length;		//bounding box length
+		float		box_width;		//bounding box width
+		float		box_height;		//bounding box height
+		//float		boundingDiameter; // bounding box diameter
 		Vector		centerOfMass; // center of mass 
 		float       volume;		// volume(or mass) of the unit mesh
 		float       surface;	// surface of the unit mesh

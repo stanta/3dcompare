@@ -113,9 +113,42 @@ void	StlSearcher::setUnitSphere(Facet * facet, Stl_Stats * stats)
 	m_UnitStats.min = stats->min /m_maxRadial;
 	m_UnitStats.max = stats->max /m_maxRadial;
 	m_UnitStats.size = stats->size /m_maxRadial;
-	m_UnitStats.boundingDiameter =  sqrt(m_UnitStats.size.x * m_UnitStats.size.x +
-                                   m_UnitStats.size.y * m_UnitStats.size.y +
-                                   m_UnitStats.size.z * m_UnitStats.size.z);
+	//m_UnitStats.boundingDiameter =  sqrt(m_UnitStats.size.x * m_UnitStats.size.x +
+      //                             m_UnitStats.size.y * m_UnitStats.size.y +
+        //                           m_UnitStats.size.z * m_UnitStats.size.z);
+
+	//implement this logic: box_length < box_width < box_height
+	if(m_UnitStats.size.x < m_UnitStats.size.y){
+		if(m_UnitStats.size.x < m_UnitStats.size.z){
+			m_UnitStats.box_length = m_UnitStats.size.x;
+			if(m_UnitStats.size.y < m_UnitStats.size.z) {
+				m_UnitStats.box_width = m_UnitStats.size.y;
+				m_UnitStats.box_height = m_UnitStats.size.z;
+			}else {
+				m_UnitStats.box_width = m_UnitStats.size.z;
+				m_UnitStats.box_height = m_UnitStats.size.y;
+			}
+		}else {
+			m_UnitStats.box_length = m_UnitStats.size.z;
+			m_UnitStats.box_width = m_UnitStats.size.x;
+			m_UnitStats.box_height = m_UnitStats.size.y;
+		}
+	} else  {
+		if(m_UnitStats.size.y < m_UnitStats.size.z){
+			m_UnitStats.box_length = m_UnitStats.size.y;
+			if(m_UnitStats.size.x < m_UnitStats.size.z){
+				m_UnitStats.box_width = m_UnitStats.size.x;
+				m_UnitStats.box_height = m_UnitStats.size.z;
+			} else {
+				m_UnitStats.box_width = m_UnitStats.size.z;
+				m_UnitStats.box_height = m_UnitStats.size.x;
+			}
+		}else{
+			m_UnitStats.box_length = m_UnitStats.size.z;
+			m_UnitStats.box_width = m_UnitStats.size.y;
+			m_UnitStats.box_height = m_UnitStats.size.x;
+		}
+	}
 }
 
 // facets total mass and center of mass calculation

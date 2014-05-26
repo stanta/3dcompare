@@ -18,7 +18,8 @@ public:
 	void setValues(const StlSearcher::UnitStats stats);
 
 	private:
-	QLabel *volume, *surface, *diameter;
+	QLabel *volume, *surface;//, *diameter;
+	QLabel *box_length, *box_width, *box_height;
 };
 
 #endif  // PROPERTIESGROUPBOX_H
