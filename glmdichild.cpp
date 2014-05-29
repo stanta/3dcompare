@@ -6,8 +6,8 @@
 
 GLMdiChild::GLMdiChild(QWidget *parent) : GLWidget(parent)
 {
-	m_stlSearcher = new StlSearcher;
-	m_stlFile = new StlFile(m_stlSearcher);
+	m_stlSphere = new StlSphere;
+	m_stlFile = new StlFile(m_stlSphere);
 
 	setAttribute(Qt::WA_DeleteOnClose);
 	m_isUntitled = true;	
@@ -16,7 +16,7 @@ GLMdiChild::GLMdiChild(QWidget *parent) : GLWidget(parent)
 GLMdiChild::~GLMdiChild()
 {
   delete	m_stlFile;
-  delete	m_stlSearcher;
+  delete	m_stlSphere;
 }
 
 void GLMdiChild::newFile()
@@ -72,6 +72,33 @@ bool GLMdiChild::save()
 		return saveAs();
 	else
 		return saveFile(m_curFile);
+}
+
+bool GLMdiChild::saveAsSphere()
+{
+	try {
+		QApplication::setOverrideCursor(Qt::WaitCursor);
+		// Write the current object into a file
+		std::string utf8_fileName = m_curFile.toUtf8().constData();
+		utf8_fileName.erase (utf8_fileName.end() -3, utf8_fileName.end()); 
+		utf8_fileName.append ("sph");
+		m_stlFile->writeAsSphere(utf8_fileName);
+		QApplication::restoreOverrideCursor();
+		//setCurrentFile(fileName);
+		return true;
+	} catch (StlFile::error_opening_file) {  // ::std::ios_base::failure
+		QApplication::restoreOverrideCursor();
+		QMessageBox msgBox;
+		msgBox.setText("Unable to write as sphere in  " + m_curFile + ".");
+		msgBox.exec();
+		return false;
+	} catch (...) {
+		QApplication::restoreOverrideCursor();
+		QMessageBox msgBox;
+		msgBox.setText("Error unknown.");
+		msgBox.exec();
+		return false;
+	}	
 }
 
 bool GLMdiChild::saveAs()
@@ -153,7 +180,7 @@ QString GLMdiChild::userFriendlyCurrentFile()
 
 void GLMdiChild::closeEvent(QCloseEvent *event) {
 	m_stlFile->close();
-	m_stlSearcher->close();
+	m_stlSphere->close();
 	if (maybeSave())
 		event->accept();
 	else 

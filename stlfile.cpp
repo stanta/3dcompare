@@ -1,26 +1,25 @@
 // Copyright (c) 2014 Andranik Abrahamyan
 
-#include <QtCore/QtGlobal>
-#include <QtGui/QApplication>
-#include <QErrorMessage>
 #include <math.h>
-#include <string>
 #include <algorithm>
-#include <cctype>
-#include <vector>
+
+#ifdef QT_CORE_LIB
+	#include <QtCore/QtGlobal>
+	#include <QtGui/QApplication>
+	#include <QErrorMessage>
+#endif //QT_CORE_LIB
 
 #include "stlfile.h"
-#include "stlsearcher.h"
+#include "stlsphere.h"
 
 #define HEADER_SIZE 84
 #define JUNK_SIZE 80
 #define SIZE_OF_FACET 50
 #define ASCII_LINES_PER_FACET 7
 
-StlFile::StlFile(StlSearcher* searcher)
+StlFile::StlFile(StlSphere* stlSphere)
 {
-	m_searcher = searcher;
-	m_facets = 0;
+	m_stlSphere = stlSphere;
 }
 
 StlFile::~StlFile()
@@ -38,7 +37,7 @@ void StlFile::open(const ::std::string& fileName)
 
 void StlFile::write(const ::std::string& fileName)
 {
-	if (m_facets != 0) 
+	if (m_vFacets.size ()> 0) 
 	{
 		if (m_stats.type == ASCII)
 			writeAscii(fileName);
@@ -49,10 +48,11 @@ void StlFile::write(const ::std::string& fileName)
 
 void StlFile::close()
 {
-	if (m_facets != 0) {
-		delete[] m_facets;
-		m_facets = 0;
-	}
+	//if (m_vFacets != 0) {
+	//	delete[] m_vFacets;
+	//	m_vFacets = 0;
+	//}
+	m_vFacets.clear ();
 }
 
 void StlFile::setFormat(const int format)
@@ -69,7 +69,7 @@ void StlFile::initialize(const ::std::string& fileName)
 	m_stats.numPoints = 0;
 	m_stats.surface = -1.0;
 	m_stats.volume = -1.0;
-	m_facets = 0;
+	//m_vFacets = 0;
 	// Open the file
 	m_file.open(fileName.c_str(), ::std::ios::binary);
 	if (m_file.is_open()) {
@@ -107,12 +107,14 @@ void StlFile::initialize(const ::std::string& fileName)
 			if (numFacets != headerNumFacets) {
 				::std::cerr << "Warning: File size doesn't match number of "
                     << "facets in the header." << ::std::endl;
+#ifdef QT_CORE_LIB
 				QErrorMessage errMessage;
 				errMessage.showMessage("File size doesn't match number of facets "
                                "in the header.");
 				QApplication::restoreOverrideCursor();
 				errMessage.exec();
 				QApplication::setOverrideCursor(Qt::WaitCursor);
+#endif
 			}
 		}
 		else {  // Otherwise, if the .STL file is ASCII, then do the following
@@ -140,12 +142,13 @@ void StlFile::initialize(const ::std::string& fileName)
 void StlFile::allocate()
 {
 	// Allocate memory for the entire .STL file
-	m_facets = new Facet[m_stats.numFacets];
-	if (m_facets == 0) {
-		::std::cerr << "Problem allocating memory" << ::std::endl;
-		throw ::std::bad_alloc();
-	}
-	m_searcher ->allocate(m_stats.numFacets);
+	//m_vFacets = new Facet[m_stats.numFacets];
+	//if (m_vFacets == 0) {
+	//	::std::cerr << "Problem allocating memory" << ::std::endl;
+	//	throw ::std::bad_alloc();
+	//}
+	m_vFacets.resize (m_stats.numFacets);
+	m_stlSphere ->allocate(m_stats.numFacets);
 }
 
 void StlFile::readData(int firstFacet, int first)
@@ -189,7 +192,7 @@ void StlFile::readData(int firstFacet, int first)
 			m_file >> junk >> junk;
 		}
 		// Write the facet into memory.
-		m_facets[i] = facet;
+		m_vFacets[i] = facet;
 
 		// While we are going through all of the facets, let's find the
 		// maximum and minimum values for x, y, and z
@@ -202,35 +205,35 @@ void StlFile::readData(int firstFacet, int first)
 			m_stats.max.z = facet.vector[0].z;
 			m_stats.min.z = facet.vector[0].z;
 	  	  
-			float xDiff = qAbs(facet.vector[0].x - facet.vector[1].x);
-			float yDiff = qAbs(facet.vector[0].y - facet.vector[1].y);
-			float zDiff = qAbs(facet.vector[0].z - facet.vector[1].z);
-			float maxDiff = qMax(xDiff, yDiff);
-			maxDiff = qMax(zDiff, maxDiff);
+			float xDiff = std::abs(facet.vector[0].x - facet.vector[1].x);
+			float yDiff = std::abs(facet.vector[0].y - facet.vector[1].y);
+			float zDiff = std::abs(facet.vector[0].z - facet.vector[1].z);
+			float maxDiff = std::max(xDiff, yDiff);
+			maxDiff = std::max(zDiff, maxDiff);
 			m_stats.shortestEdge = maxDiff;
 			first = 0;
 		}
 		// Now find the max and min values
-		m_stats.max.x = qMax(m_stats.max.x, facet.vector[0].x);
-		m_stats.min.x = qMin(m_stats.min.x, facet.vector[0].x);
-		m_stats.max.y = qMax(m_stats.max.y, facet.vector[0].y);
-		m_stats.min.y = qMin(m_stats.min.y, facet.vector[0].y);
-		m_stats.max.z = qMax(m_stats.max.z, facet.vector[0].z);
-		m_stats.min.z = qMin(m_stats.min.z, facet.vector[0].z);
+		m_stats.max.x = std::max(m_stats.max.x, facet.vector[0].x);
+		m_stats.min.x = std::min(m_stats.min.x, facet.vector[0].x);
+		m_stats.max.y = std::max(m_stats.max.y, facet.vector[0].y);
+		m_stats.min.y = std::min(m_stats.min.y, facet.vector[0].y);
+		m_stats.max.z = std::max(m_stats.max.z, facet.vector[0].z);
+		m_stats.min.z = std::min(m_stats.min.z, facet.vector[0].z);
 
-		m_stats.max.x = qMax(m_stats.max.x, facet.vector[1].x);
-		m_stats.min.x = qMin(m_stats.min.x, facet.vector[1].x);
-		m_stats.max.y = qMax(m_stats.max.y, facet.vector[1].y);
-		m_stats.min.y = qMin(m_stats.min.y, facet.vector[1].y);
-		m_stats.max.z = qMax(m_stats.max.z, facet.vector[1].z);
-		m_stats.min.z = qMin(m_stats.min.z, facet.vector[1].z);
+		m_stats.max.x = std::max(m_stats.max.x, facet.vector[1].x);
+		m_stats.min.x = std::min(m_stats.min.x, facet.vector[1].x);
+		m_stats.max.y = std::max(m_stats.max.y, facet.vector[1].y);
+		m_stats.min.y = std::min(m_stats.min.y, facet.vector[1].y);
+		m_stats.max.z = std::max(m_stats.max.z, facet.vector[1].z);
+		m_stats.min.z = std::min(m_stats.min.z, facet.vector[1].z);
 
-		m_stats.max.x = qMax(m_stats.max.x, facet.vector[2].x);
-		m_stats.min.x = qMin(m_stats.min.x, facet.vector[2].x);
-		m_stats.max.y = qMax(m_stats.max.y, facet.vector[2].y);
-		m_stats.min.y = qMin(m_stats.min.y, facet.vector[2].y);
-		m_stats.max.z = qMax(m_stats.max.z, facet.vector[2].z);
-		m_stats.min.z = qMin(m_stats.min.z, facet.vector[2].z);
+		m_stats.max.x = std::max(m_stats.max.x, facet.vector[2].x);
+		m_stats.min.x = std::min(m_stats.min.x, facet.vector[2].x);
+		m_stats.max.y = std::max(m_stats.max.y, facet.vector[2].y);
+		m_stats.min.y = std::min(m_stats.min.y, facet.vector[2].y);
+		m_stats.max.z = std::max(m_stats.max.z, facet.vector[2].z);
+		m_stats.min.z = std::min(m_stats.min.z, facet.vector[2].z);
 	}
 	m_stats.size.x = m_stats.max.x - m_stats.min.x;
 	m_stats.size.y = m_stats.max.y - m_stats.min.y;
@@ -242,7 +245,7 @@ void StlFile::readData(int firstFacet, int first)
 	//m_stats.surface = getSurface();
 	//m_stats.volume = getVolume();
 	// Set unit Sphere data(cennter of mass ...)
-	m_searcher->setUnitSphere(m_facets, &m_stats);
+	m_stlSphere->setUnitSphere(&m_vFacets, &m_stats);
 }
 
 int StlFile::readIntFromBytes(::std::ifstream& file) 
@@ -306,20 +309,20 @@ void StlFile::writeBinary(const ::std::string& fileName)
 		for (int i = 0; i < JUNK_SIZE; i++) file.put(0);
 		writeBytesFromInt(file, m_stats.numFacets);
 		for (int i = 0; i < m_stats.numFacets; i++) {
-			writeBytesFromFloat(file, m_facets[i].normal.x);
-			writeBytesFromFloat(file, m_facets[i].normal.y);
-			writeBytesFromFloat(file, m_facets[i].normal.z);
-			writeBytesFromFloat(file, m_facets[i].vector[0].x);
-			writeBytesFromFloat(file, m_facets[i].vector[0].y);
-			writeBytesFromFloat(file, m_facets[i].vector[0].z);
-			writeBytesFromFloat(file, m_facets[i].vector[1].x);
-			writeBytesFromFloat(file, m_facets[i].vector[1].y);
-			writeBytesFromFloat(file, m_facets[i].vector[1].z);
-			writeBytesFromFloat(file, m_facets[i].vector[2].x);
-			writeBytesFromFloat(file, m_facets[i].vector[2].y);
-			writeBytesFromFloat(file, m_facets[i].vector[2].z);
-			file << m_facets[i].extra[0];
-			file << m_facets[i].extra[1];
+			writeBytesFromFloat(file, m_vFacets[i].normal.x);
+			writeBytesFromFloat(file, m_vFacets[i].normal.y);
+			writeBytesFromFloat(file, m_vFacets[i].normal.z);
+			writeBytesFromFloat(file, m_vFacets[i].vector[0].x);
+			writeBytesFromFloat(file, m_vFacets[i].vector[0].y);
+			writeBytesFromFloat(file, m_vFacets[i].vector[0].z);
+			writeBytesFromFloat(file, m_vFacets[i].vector[1].x);
+			writeBytesFromFloat(file, m_vFacets[i].vector[1].y);
+			writeBytesFromFloat(file, m_vFacets[i].vector[1].z);
+			writeBytesFromFloat(file, m_vFacets[i].vector[2].x);
+			writeBytesFromFloat(file, m_vFacets[i].vector[2].y);
+			writeBytesFromFloat(file, m_vFacets[i].vector[2].z);
+			file << m_vFacets[i].extra[0];
+			file << m_vFacets[i].extra[1];
 		}
 		file.close();
 	} else {
@@ -327,6 +330,41 @@ void StlFile::writeBinary(const ::std::string& fileName)
 		throw error_opening_file();
 	}
 }
+
+
+void	StlFile::writeAsSphere(const ::std::string& fileName)
+{
+	// Open the file
+	::std::ofstream file(fileName.c_str(), ::std::ios::out);
+	file.setf(::std::ios::scientific);
+	file.precision(8);
+	if (file.is_open()) {
+		file << "solid" << ::std::endl;
+		for (int i = 0; i < m_stats.numFacets; i++) {
+			file << "  facet normal " << m_vFacets[i].normal.x << " "
+				<< m_vFacets[i].normal.y << " " << m_vFacets[i].normal.z << ::std::endl;
+			file << "    outer loop Spherical" << ::std::endl;
+			StlSphere::Spherical sp = m_stlSphere->getSpherical(i);
+			file << "       radial: " << sp.radial[0]  << "  azimuth: "
+				<< sp.azimuth[0]  << "  polar: " << sp.polar[0]  << ::std::endl;
+			
+			file << "       radial: " << sp.radial[1]  << "  azimuth: "
+				<< sp.azimuth[1]  << "  polar: " << sp.polar[1]  << ::std::endl;
+			file << "       radial: " << sp.radial[2]  << "  azimuth: "
+				<< sp.azimuth[2]  << "  polar: " << sp.polar[2]  << ::std::endl;
+
+			file << "    endloop Spherical" << ::std::endl;
+			file << "  endSpherical" << ::std::endl;
+		}
+		file << "endsolid" << ::std::endl;
+		file.close();
+	} else {
+		::std::cerr << "The file " << file << " could not be found." << ::std::endl;
+		throw error_opening_file();
+	}
+
+}
+
 
 void StlFile::writeAscii(const ::std::string& fileName) {
 	// Open the file
@@ -336,15 +374,15 @@ void StlFile::writeAscii(const ::std::string& fileName) {
 	if (file.is_open()) {
 		file << "solid" << ::std::endl;
 		for (int i = 0; i < m_stats.numFacets; i++) {
-			file << "  facet normal " << m_facets[i].normal.x << " "
-				<< m_facets[i].normal.y << " " << m_facets[i].normal.z << ::std::endl;
+			file << "  facet normal " << m_vFacets[i].normal.x << " "
+				<< m_vFacets[i].normal.y << " " << m_vFacets[i].normal.z << ::std::endl;
 			file << "    outer loop " << ::std::endl;
-			file << "      Vector " << m_facets[i].vector[0].x << " "
-				<< m_facets[i].vector[0].y << " " << m_facets[i].vector[0].z << ::std::endl;
-			file << "      Vector " << m_facets[i].vector[1].x << " " 
-				<< m_facets[i].vector[1].y << " " << m_facets[i].vector[1].z << ::std::endl;
-			file << "      Vector " << m_facets[i].vector[2].x << " "
-				<< m_facets[i].vector[2].y << " " << m_facets[i].vector[2].z << ::std::endl;
+			file << "      Vector " << m_vFacets[i].vector[0].x << " "
+				<< m_vFacets[i].vector[0].y << " " << m_vFacets[i].vector[0].z << ::std::endl;
+			file << "      Vector " << m_vFacets[i].vector[1].x << " " 
+				<< m_vFacets[i].vector[1].y << " " << m_vFacets[i].vector[1].z << ::std::endl;
+			file << "      Vector " << m_vFacets[i].vector[2].x << " "
+				<< m_vFacets[i].vector[2].y << " " << m_vFacets[i].vector[2].z << ::std::endl;
 			file << "    endloop" << ::std::endl;
 			file << "  endfacet" << ::std::endl;
 		}
@@ -396,7 +434,7 @@ int StlFile::getNumPoints()
 	::std::vector<Vector> vectors;
 	for (int i = 0; i < m_stats.numFacets; i++) {
 		for (int j = 0; j < 3; j++) {
-			vectors.push_back(m_facets[i].vector[j]);
+			vectors.push_back(m_vFacets[i].vector[j]);
 		}
 	}
 	::std::sort(vectors.begin(), vectors.end(), compareVectors);
@@ -410,17 +448,17 @@ float StlFile::getVolume()
 	Vector p;
 	float volume = 0.0;
 	// Choose a point, any point as the reference
-	p0.x = m_facets[0].vector[0].x;
-	p0.y = m_facets[0].vector[0].y;
-	p0.z = m_facets[0].vector[0].z;
+	p0.x = m_vFacets[0].vector[0].x;
+	p0.y = m_vFacets[0].vector[0].y;
+	p0.z = m_vFacets[0].vector[0].z;
 	for (int i = 0; i < m_stats.numFacets; i++) {
-		p.x = m_facets[i].vector[0].x - p0.x;
-		p.y = m_facets[i].vector[0].y - p0.y;
-		p.z = m_facets[i].vector[0].z - p0.z;
+		p.x = m_vFacets[i].vector[0].x - p0.x;
+		p.y = m_vFacets[i].vector[0].y - p0.y;
+		p.z = m_vFacets[i].vector[0].z - p0.z;
 		// Do dot product to get distance from point to plane
-		Normal n = m_facets[i].normal;
+		Normal n = m_vFacets[i].normal;
 		float height = (n.x * p.x) + (n.y * p.y) + (n.z * p.z);
-		float area = getArea(&m_facets[i]);
+		float area = getArea(&m_vFacets[i]);
 		volume += (area * height) / 3.0;
 	}
 	if (volume < 0.0) 
@@ -434,7 +472,7 @@ float StlFile::getSurface()
 {
 	float surface = 0.0;
 	for (int i = 0; i < m_stats.numFacets; i++) {
-		float area = getArea(&m_facets[i]);
+		float area = getArea(&m_vFacets[i]);
 		surface += area;
 	}
 	if (surface < 0.0) 

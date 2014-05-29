@@ -5,7 +5,7 @@
 
 #include "glwidget.h"
 #include "stlfile.h"
-#include "stlsearcher.h"
+#include "stlsphere.h"
 
 GLWidget::GLWidget(QWidget *parent) : QGLWidget(parent)
 {
@@ -41,7 +41,7 @@ QSize GLWidget::sizeHint() const
 
 void GLWidget::makeObjectFromStlFile(StlFile *stlfile)
 {
-	StlSearcher* searcher = stlfile->getSearcher ();
+	StlSphere* stlsphere = stlfile->getStlSphere ();
 	
 /*	
 	GLuint m_object = glGenLists(2);
@@ -59,20 +59,14 @@ void GLWidget::makeObjectFromStlFile(StlFile *stlfile)
 	glNewList(m_object, GL_COMPILE);
 	glBegin(GL_TRIANGLES ); // | GL_LINES
 	glLineWidth(1.0);
-	for (int i = 0; i < stlfile->getStats().numFacets; ++i) {
+	int numFacets = stlfile->getStats().numFacets;
+	for (int i = 0; i < numFacets; ++i) {
 		//qglColor(QColor::fromRgbF(0, 0, 0)); 
-		glNormal3d(stlfile->getFacets()[i].normal.x,
-               stlfile->getFacets()[i].normal.y,
-               stlfile->getFacets()[i].normal.z);
-		triangle(stlfile->getFacets()[i].vector[0].x,
-             stlfile->getFacets()[i].vector[0].y,
-             stlfile->getFacets()[i].vector[0].z,
-             stlfile->getFacets()[i].vector[1].x,
-             stlfile->getFacets()[i].vector[1].y,
-             stlfile->getFacets()[i].vector[1].z,
-             stlfile->getFacets()[i].vector[2].x,
-             stlfile->getFacets()[i].vector[2].y,
-             stlfile->getFacets()[i].vector[2].z);
+		Facet facet = stlfile->getFacet(i);
+		glNormal3d(facet.normal.x, facet.normal.y, facet.normal.z);
+		triangle(facet.vector[0].x, facet.vector[0].y, facet.vector[0].z,
+             facet.vector[1].x, facet.vector[1].y, facet.vector[1].z,
+             facet.vector[2].x, facet.vector[2].y, facet.vector[2].z);
 		//qglColor(QColor::fromRgbF(0, 1, 0)); 
 		//int j = searcher->getMinRadial(i); 
 		//glVertex3f(0,0,0);
@@ -89,11 +83,11 @@ void GLWidget::makeObjectFromStlFile(StlFile *stlfile)
 	//qglColor(QColor::fromRgbF(0, 1, 0)); 
 	
 	glLineWidth(1.0);
-	for (int i = 0; i < stlfile->getStats().numFacets; ++i) {
-		int j = searcher->getMinRadial(i); 
+	for (int i = 0; i < numFacets; ++i) {
+		int j = stlsphere->getMinRadial(i); 
+		Facet facet = stlfile->getFacet(i);
 		glVertex3f(0,0,0);
-		glVertex3f(stlfile->getFacets()[i].vector[j].x, stlfile->getFacets()[i].vector[j].y,
-					stlfile->getFacets()[i].vector[j].z);
+		glVertex3f(facet.vector[j].x, facet.vector[j].y, facet.vector[j].z);
 	}
 	glEnd();
 	glEndList();
@@ -114,14 +108,14 @@ void GLWidget::makeObjectFromStlFile(StlFile *stlfile)
 			qAbs(stlfile->getStats().max.y-stlfile->getStats().min.y)),
 			qAbs(stlfile->getStats().max.z-stlfile->getStats().min.z));
 */
-	xPos = (searcher->getStats().max.x + searcher->getStats().min.x)/2;
-	yPos = (searcher->getStats().max.y + searcher->getStats().min.y)/2;
-	zPos = (searcher->getStats().max.z + searcher->getStats().min.z)/2;
+
+	StlSphere::UnitStats stats = stlsphere->getStats();
+	xPos = (stats.max.x + stats.min.x)/2;
+	yPos = (stats.max.y + stats.min.y)/2;
+	zPos = (stats.max.z + stats.min.z)/2;
 	
-	defaultZoomFactor = qMax(qMax(
-			qAbs(searcher->getStats().max.x - searcher->getStats().min.x),
-			qAbs(searcher->getStats().max.y - searcher->getStats().min.y)),
-			qAbs(searcher->getStats().max.z - searcher->getStats().min.z));
+	defaultZoomFactor = qMax(qMax( qAbs(stats.max.x - stats.min.x),
+			qAbs(stats.max.y - stats.min.y)), qAbs(stats.max.z - stats.min.z));
 	
 	zoomInc = defaultZoomFactor/1000;
 	

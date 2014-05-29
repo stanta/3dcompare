@@ -77,7 +77,7 @@ void DimensionsGroupBox::reset() {
 	zDelta->setText("");
 }
 
-void DimensionsGroupBox::setValues(const StlSearcher::UnitStats stats) {
+void DimensionsGroupBox::setValues(const StlSphere::UnitStats stats) {
 	QString data;
 	// Write x values contained in stats
 	data.setNum(stats.max.x, 'f', 3);

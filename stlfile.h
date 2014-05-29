@@ -5,11 +5,12 @@
 
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include <exception>
 
 #include "types.h"
 
-class	StlSearcher;
+class	StlSphere;
 
 class	StlFile 
 {
@@ -18,15 +19,16 @@ public:
 	class error_opening_file : public ::std::exception {};
 
 	
-	StlFile(StlSearcher* searcher);
+	StlFile(StlSphere* sphere);
 	~StlFile();
 	void	open(const ::std::string&);
 	void	write(const ::std::string&);
+	void	writeAsSphere(const ::std::string&);
 	void	close();
 	void	setFormat(const int format);
 	Stl_Stats	getStats() const { return m_stats; };
-	Facet*	getFacets() const { return m_facets; };
-	StlSearcher*	getSearcher() const { return m_searcher; };
+	Facet	getFacet(int i) const { return m_vFacets[i]; };
+	StlSphere*	getStlSphere() const { return m_stlSphere; };
 
 private:
 	void	initialize(const ::std::string&);
@@ -39,14 +41,13 @@ private:
 	void	writeBinary(const ::std::string&);
 	void	writeAscii(const ::std::string&);
 	int		getNumPoints();
-	//float	getVolume();
-	//float	getSurface();
+
 	// members
 	::std::ifstream		m_file;
-	Facet *				m_facets;
+	std::vector<Facet>	m_vFacets;
 	Stl_Stats			m_stats;
 
-	StlSearcher*	m_searcher;
+	StlSphere*			m_stlSphere;
 };
 
 #endif  // STLFILE_H

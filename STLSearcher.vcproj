@@ -242,11 +242,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\stlcompare.cpp"
+				>
+			</File>
+			<File
 				RelativePath="stlfile.cpp"
 				>
 			</File>
 			<File
-				RelativePath="stlsearcher.cpp"
+				RelativePath=".\stlsphere.cpp"
 				>
 			</File>
 			<File
@@ -446,11 +450,15 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\stlcompare.h"
+				>
+			</File>
+			<File
 				RelativePath="stlfile.h"
 				>
 			</File>
 			<File
-				RelativePath="stlsearcher.h"
+				RelativePath=".\stlsphere.h"
 				>
 			</File>
 			<File
@@ -494,18 +502,6 @@
 			UniqueIdentifier="{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}"
 			>
 			<File
-				RelativePath="debug\moc_axisglwidget.cpp"
-				>
-				<FileConfiguration
-					Name="Release|Win32"
-					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="release\moc_axisglwidget.cpp"
 				>
 				<FileConfiguration
@@ -518,7 +514,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="debug\moc_axisgroupbox.cpp"
+				RelativePath="debug\moc_axisglwidget.cpp"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -542,7 +538,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="debug\moc_dimensionsgroupbox.cpp"
+				RelativePath="debug\moc_axisgroupbox.cpp"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -566,7 +562,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="debug\moc_glmdichild.cpp"
+				RelativePath="debug\moc_dimensionsgroupbox.cpp"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -582,6 +578,18 @@
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="debug\moc_glmdichild.cpp"
+				>
+				<FileConfiguration
+					Name="Release|Win32"
 					ExcludedFromBuild="true"
 					>
 					<Tool
@@ -614,18 +622,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="debug\moc_meshinformationgroupbox.cpp"
-				>
-				<FileConfiguration
-					Name="Release|Win32"
-					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="release\moc_meshinformationgroupbox.cpp"
 				>
 				<FileConfiguration
@@ -638,7 +634,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="debug\moc_propertiesgroupbox.cpp"
+				RelativePath="debug\moc_meshinformationgroupbox.cpp"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -662,7 +658,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="debug\moc_stlviewer.cpp"
+				RelativePath="debug\moc_propertiesgroupbox.cpp"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -686,7 +682,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="debug\qrc_stlsearcher.cpp"
+				RelativePath="debug\moc_stlviewer.cpp"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -702,6 +698,18 @@
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="debug\qrc_stlsearcher.cpp"
+				>
+				<FileConfiguration
+					Name="Release|Win32"
 					ExcludedFromBuild="true"
 					>
 					<Tool

@@ -95,6 +95,12 @@ void STLViewer::saveAs()
 		statusBar()->showMessage(tr("File saved"), 2000);
 }
 
+void STLViewer::saveAsSphere()
+{
+	if (activeGLMdiChild() && activeGLMdiChild()->saveAsSphere())
+		statusBar()->showMessage(tr("File saved as Sphere"), 2000);
+}
+
 void STLViewer::saveImage()
 {
 	if (activeGLMdiChild() && activeGLMdiChild()->saveImage())
@@ -200,9 +206,11 @@ void STLViewer::updateMenus()
 	if (hasGLMdiChild && !activeGLMdiChild()->m_isUntitled) {
 		saveAct->setEnabled(true);
 		saveAsAct->setEnabled(true);
+		saveAsSphereAct->setEnabled(true);
 	} else {
 		saveAct->setEnabled(false);
 		saveAsAct->setEnabled(false);
+		saveAsSphereAct->setEnabled(false);
 	}
 	saveImageAct->setEnabled(hasGLMdiChild);
 	closeAct->setEnabled(hasGLMdiChild);
@@ -359,6 +367,11 @@ void STLViewer::createActions()
 	saveAsAct->setStatusTip(tr("Save the document under a new name"));
 	connect(saveAsAct, SIGNAL(triggered()), this, SLOT(saveAs()));
 
+	saveAsSphereAct = new QAction(tr("Save as Spherical"), this);
+	saveAsSphereAct->setShortcut(QKeySequence::UnknownKey);
+	saveAsSphereAct->setStatusTip(tr("Save as Spherical "));
+	connect(saveAsSphereAct, SIGNAL(triggered()), this, SLOT(saveAsSphere()));
+
 	saveImageAct = new QAction(tr("Save Image..."), this);
 	saveImageAct->setShortcut(tr("Ctrl+I"));
 	saveImageAct->setStatusTip(tr("Save the current view to disk"));
@@ -502,6 +515,7 @@ void STLViewer::createMenus() {
   fileMenu->addAction(openAct);
   fileMenu->addAction(saveAct);
   fileMenu->addAction(saveAsAct);
+  fileMenu->addAction(saveAsSphereAct);
   fileMenu->addAction(saveImageAct);
   fileMenu->addSeparator();
   fileMenu->addAction(exitAct);

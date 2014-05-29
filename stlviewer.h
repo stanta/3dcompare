@@ -35,6 +35,7 @@ private slots:
 	void	open();
 	void	save();
 	void	saveAs();
+	void	saveAsSphere();
 	void	saveImage();
 	void	rotate();
 	void	panning();
@@ -83,6 +84,7 @@ private:
 	QAction *	openAct;
 	QAction *	saveAct;
 	QAction *	saveAsAct;
+	QAction *	saveAsSphereAct;
 	QAction *	saveImageAct;
 	QAction *	closeAct;
 	QAction *	closeAllAct;

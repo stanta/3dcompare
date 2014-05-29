@@ -4,7 +4,7 @@
 #define PROPERTIESGROUPBOX_H
 
 #include <QtGui/QGroupBox>
-#include "stlsearcher.h"
+#include "stlsphere.h"
 
 class QLabel;
 
@@ -15,11 +15,12 @@ public:
 	PropertiesGroupBox(QWidget *parent = 0);
 	~PropertiesGroupBox();
 	void reset();
-	void setValues(const StlSearcher::UnitStats stats);
+	void setValues(const StlSphere::UnitStats stats);
 
 	private:
 	QLabel *volume, *surface;//, *diameter;
 	QLabel *box_length, *box_width, *box_height;
+	QLabel *average_radial , *min_radial;
 };
 
 #endif  // PROPERTIESGROUPBOX_H

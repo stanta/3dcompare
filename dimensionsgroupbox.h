@@ -4,7 +4,7 @@
 #define DIMENSIONSGROUPBOX_H
 
 #include <QtGui/QGroupBox>
-#include "stlsearcher.h"
+#include "stlsphere.h"
 
 class QLabel;
 
@@ -15,7 +15,7 @@ public:
 	DimensionsGroupBox(QWidget *parent = 0);
 	~DimensionsGroupBox();
 	void reset();
-	void setValues(const StlSearcher::UnitStats  stats);
+	void setValues(const StlSphere::UnitStats  stats);
 
 private:
 	QLabel *xMax, *xMin, *xDelta;

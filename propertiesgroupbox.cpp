@@ -36,11 +36,25 @@ PropertiesGroupBox::PropertiesGroupBox(QWidget *parent)
 	box_height->setAlignment(Qt::AlignRight);
 	layout->addWidget(box_height, 4, 1);
 
+	layout->addWidget(new QLabel("average radial:"), 5, 0);
+	average_radial = new QLabel("");
+	average_radial->setAlignment(Qt::AlignRight);
+	layout->addWidget(average_radial, 5, 1);
+	
+	layout->addWidget(new QLabel("min radial:"), 6, 0);
+	min_radial = new QLabel("");
+	min_radial->setAlignment(Qt::AlignRight);
+	layout->addWidget(min_radial, 6, 1);
+
+	
+
 	layout->addWidget(new QLabel("mm^3"), 0, 2);
 	layout->addWidget(new QLabel("mm^2"), 1, 2);
 	layout->addWidget(new QLabel("mm"), 2, 2);
 	layout->addWidget(new QLabel("mm"), 3, 2);
 	layout->addWidget(new QLabel("mm"), 4, 2);
+	layout->addWidget(new QLabel("mm"), 5, 2);
+	layout->addWidget(new QLabel("mm"), 6, 2);
 
 	setLayout(layout);
 }
@@ -57,9 +71,11 @@ void PropertiesGroupBox::reset()
 	box_length->setText("");
 	box_width->setText("");
 	box_height->setText("");
+	average_radial->setText("");
+	min_radial->setText("");
 }
 
-void PropertiesGroupBox::setValues(const StlSearcher::UnitStats stats)
+void PropertiesGroupBox::setValues(const StlSphere::UnitStats stats)
 {
 	QString data;
 	// Write values contained in stats
@@ -78,4 +94,11 @@ void PropertiesGroupBox::setValues(const StlSearcher::UnitStats stats)
 
 	data.setNum(stats.box_height , 'f', 5);
 	box_height->setText(data);
+
+	data.setNum(stats.averageRadial , 'f', 5);
+	average_radial->setText(data);
+	
+	data.setNum(stats.minRadial , 'f', 5);
+	min_radial->setText(data);
+
 }

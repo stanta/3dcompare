@@ -5,7 +5,7 @@
 
 #include "glwidget.h"
 #include "stlfile.h"
-#include "stlsearcher.h"
+#include "stlsphere.h"
 
 class GLMdiChild : public GLWidget
 {
@@ -13,17 +13,18 @@ class GLMdiChild : public GLWidget
 public:
 	GLMdiChild(QWidget *parent = 0);
 	~GLMdiChild();
-	void newFile();
-	bool loadFile(const QString &fileName);
-	bool save();
-	bool saveAs();
-	bool saveFile(const QString &fileName);
-	bool saveImage();
+	void	newFile();
+	bool	loadFile(const QString &fileName);
+	bool	save();
+	bool	saveAs();
+	bool	saveAsSphere();
+	bool	saveFile(const QString &fileName);
+	bool	saveImage();
 	QString userFriendlyCurrentFile();
 	QString currentFile() { return m_curFile; }
 	Stl_Stats getStats() const { return m_stlFile->getStats(); }
-	StlSearcher::UnitStats getSearcherStats() const
-	{ return m_stlSearcher->getStats(); }
+	StlSphere::UnitStats getSearcherStats() const
+	{ return m_stlSphere->getStats(); }
 
 signals:
 	void	mouseButtonPressed(Qt::MouseButtons button);
@@ -44,7 +45,7 @@ public:
 private:
 	StlFile *		m_stlFile;
 	QString			m_curFile;
-	StlSearcher*	m_stlSearcher;
+	StlSphere*		m_stlSphere;
 };
 
 #endif  // GLMDICHILD_H
