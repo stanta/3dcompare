@@ -23,11 +23,11 @@ public:
 	~StlFile();
 	void	open(const ::std::string&);
 	void	write(const ::std::string&);
-	void	writeAsSphere(const ::std::string&);
+	void	writeAsSphere(const ::std::string&);	
 	void	close();
 	void	setFormat(const int format);
 	Stl_Stats	getStats() const { return m_stats; };
-	Facet	getFacet(int i) const { return m_vFacets[i]; };
+	Facet		getFacet(int i) const { return m_vFacets[i]; };
 	StlSphere*	getStlSphere() const { return m_stlSphere; };
 
 private:

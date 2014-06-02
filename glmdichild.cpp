@@ -6,7 +6,7 @@
 
 GLMdiChild::GLMdiChild(QWidget *parent) : GLWidget(parent)
 {
-	m_stlSphere = new StlSphere;
+	m_stlSphere = new StlSphere(36); // by 10deg
 	m_stlFile = new StlFile(m_stlSphere);
 
 	setAttribute(Qt::WA_DeleteOnClose);
@@ -100,6 +100,34 @@ bool GLMdiChild::saveAsSphere()
 		return false;
 	}	
 }
+
+bool GLMdiChild::saveAsNormalFrequency()
+{
+	try {
+		QApplication::setOverrideCursor(Qt::WaitCursor);
+		// Write the current object into a file
+		std::string utf8_fileName = m_curFile.toUtf8().constData();
+		utf8_fileName.erase (utf8_fileName.end() -3, utf8_fileName.end()); 
+		utf8_fileName.append ("nfr");
+		m_stlSphere->writeAsNormalFrequency(utf8_fileName);
+		QApplication::restoreOverrideCursor();
+		//setCurrentFile(fileName);
+		return true;
+	} catch (StlFile::error_opening_file) {  // ::std::ios_base::failure
+		QApplication::restoreOverrideCursor();
+		QMessageBox msgBox;
+		msgBox.setText("Unable to write as sphere in  " + m_curFile + ".");
+		msgBox.exec();
+		return false;
+	} catch (...) {
+		QApplication::restoreOverrideCursor();
+		QMessageBox msgBox;
+		msgBox.setText("Error unknown.");
+		msgBox.exec();
+		return false;
+	}	
+}
+
 
 bool GLMdiChild::saveAs()
 {

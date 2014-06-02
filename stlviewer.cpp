@@ -101,6 +101,13 @@ void STLViewer::saveAsSphere()
 		statusBar()->showMessage(tr("File saved as Sphere"), 2000);
 }
 
+void STLViewer::saveAsNormalFrequency()
+{
+	if (activeGLMdiChild() && activeGLMdiChild()->saveAsNormalFrequency())
+		statusBar()->showMessage(tr("File saved as Normal Frequency"), 2000);
+}
+
+
 void STLViewer::saveImage()
 {
 	if (activeGLMdiChild() && activeGLMdiChild()->saveImage())
@@ -207,10 +214,12 @@ void STLViewer::updateMenus()
 		saveAct->setEnabled(true);
 		saveAsAct->setEnabled(true);
 		saveAsSphereAct->setEnabled(true);
+		saveAsNormalFreqAct->setEnabled(true);
 	} else {
 		saveAct->setEnabled(false);
 		saveAsAct->setEnabled(false);
 		saveAsSphereAct->setEnabled(false);
+		saveAsNormalFreqAct->setEnabled(false);
 	}
 	saveImageAct->setEnabled(hasGLMdiChild);
 	closeAct->setEnabled(hasGLMdiChild);
@@ -372,6 +381,11 @@ void STLViewer::createActions()
 	saveAsSphereAct->setStatusTip(tr("Save as Spherical "));
 	connect(saveAsSphereAct, SIGNAL(triggered()), this, SLOT(saveAsSphere()));
 
+	saveAsNormalFreqAct = new QAction(tr("Save as Normal Frequency"), this);
+	saveAsNormalFreqAct->setShortcut(QKeySequence::UnknownKey);
+	saveAsNormalFreqAct->setStatusTip(tr("Save as Normal Frequency "));
+	connect(saveAsNormalFreqAct, SIGNAL(triggered()), this, SLOT(saveAsNormalFrequency()));
+
 	saveImageAct = new QAction(tr("Save Image..."), this);
 	saveImageAct->setShortcut(tr("Ctrl+I"));
 	saveImageAct->setStatusTip(tr("Save the current view to disk"));
@@ -516,6 +530,7 @@ void STLViewer::createMenus() {
   fileMenu->addAction(saveAct);
   fileMenu->addAction(saveAsAct);
   fileMenu->addAction(saveAsSphereAct);
+  fileMenu->addAction(saveAsNormalFreqAct);
   fileMenu->addAction(saveImageAct);
   fileMenu->addSeparator();
   fileMenu->addAction(exitAct);

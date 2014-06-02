@@ -5,6 +5,8 @@
 
 #include "stlsphere.h"
 
+#define M_PI     3.14159265358979323846
+#define M_PI_2   1.57079632679489661923
 
 bool sortByRadial (Facet a,Facet b)
 { 
@@ -44,8 +46,9 @@ bool sortByRadial (Facet a,Facet b)
 }
 
 
-StlSphere::StlSphere()
+StlSphere::StlSphere(int devideSphere)
 {
+	m_devideSphere = devideSphere;
 }
 
 StlSphere::~StlSphere()
@@ -124,7 +127,8 @@ void	StlSphere::setUnitSphere(std::vector<Facet>* pfacet, Stl_Stats * stats)
 		pfacet->at(i).vector[2].z /= m_maxRadial;
 
 		// set Spherical data 
-		setSphericalItem(pfacet->at(i).vector, i); 
+		setSphericalItem(pfacet, i); 
+
 		// calculate the average_radial
 		m_UnitStats.averageRadial += m_vSpherical[i].radial[0] +
 										m_vSpherical[i].radial[1] +
@@ -233,14 +237,106 @@ void	StlSphere::setMinMaxRadial(Vector* vector)
 	}
 }
 
-void	StlSphere::setSphericalItem(Vector* vector, int ind)
+void	StlSphere::setNormalFrequency(float x, float y, float z)
 {
+	bool finded = false;
+	NormalFrequency nf;
+	int devideSphere = m_devideSphere/2;
+	nf.x_pos = (short)(x*devideSphere);
+	nf.y_pos = (short)(y*devideSphere);
+	nf.z_pos = (short)(z*devideSphere);
+	nf.frequency = 1;
+
+	for( int i= 0; i < m_vNormalFreq.size (); i++)
+	{
+		if(m_vNormalFreq[i].x_pos ==  nf.x_pos &&
+				m_vNormalFreq[i].y_pos ==  nf.y_pos &&
+				m_vNormalFreq[i].z_pos ==  nf.z_pos)
+		{
+			m_vNormalFreq[i].frequency++;
+			finded = true;
+			break;
+		}
+	}
+	if(!finded)
+		m_vNormalFreq.push_back (nf);
+	
+}
+
+void	StlSphere::writeAsNormalFrequency(const ::std::string& fileName)
+{
+	// Open the file, file have .nfr extention
+	::std::ofstream file(fileName.c_str(), ::std::ios::out);
+	file.setf(::std::ios::scientific);
+	file.precision(8);
+	if (file.is_open()) {
+		file << "NormalFrequency" << ::std::endl;
+		for (int i = 0; i < m_vNormalFreq.size() ; i++) {
+			file << "x_pos =" << m_vNormalFreq[i].x_pos  << "\t"
+				 << "y_pos =" << m_vNormalFreq[i].y_pos  << "\t"
+				 << "z_pos =" << m_vNormalFreq[i].z_pos  << "\t"
+				 << "frequency =" << m_vNormalFreq[i].frequency << ::std::endl;
+		}
+		file << "endNormalFrequency" << ::std::endl;
+		file.close();
+	} else {
+		::std::cerr << "The file " << file << " could not be found." << ::std::endl;
+	}
+
+}
+
+
+void	StlSphere::setSphericalItem(std::vector<Facet>* fac , int ind)
+{
+	Vector* vector = fac->at(ind).vector;
 	for (int i = 0; i < 3; i++) {
 		double s =  vector[i].x * vector[i].x + vector[i].y * vector[i].y + vector[i].z * vector[i].z;
-		m_vSpherical[ind].radial[i] = sqrt(s);
-		m_vSpherical[ind].azimuth[i] = atan2(vector[i].y ,vector[i].x);
+		m_vSpherical[ind].radial[i] = sqrt(s);		
 		m_vSpherical[ind].polar[i] = acos(vector[i].z / m_vSpherical[ind].radial[i]);
+		m_vSpherical[ind].azimuth[i] = calcAtan(vector[i].x,vector[i].y);
 	}
+	setNormalFrequency(fac->at(ind).normal.x ,fac->at(ind).normal.y,fac->at(ind).normal.z);
+
+/*
+	// set normal value		
+	float x  = fac->at(ind).normal.x ;
+	float y  = fac->at(ind).normal.y ;
+	float z  = fac->at(ind).normal.z  ;
+	if (x > 0.95 || y > 0.95 || z > 0.95)
+		int f = 4;
+	//m_vSpherical[ind].normal.polar = acos(z / m_vSpherical[ind].radial[i]);
+	// I will use atan for geting 0 - 2*Pi radians
+	m_vSpherical[ind].normal.polar = calcAtan (sqrt(x*x + y*y), z);		
+	m_vSpherical[ind].normal.azimuth = calcAtan(x, y);
+*/
+}
+
+/*
+theta^ = atan2(abs(y/x));
+For theta in QI:    theta = theta^
+For theta in QII:   theta= pi - theta^
+For theta in QIII:  theta = pi + theta^
+For theta in QIV:   theta = 2*pi - theta^ 
+*/
+float	StlSphere::calcAtan(float x, float y)
+{
+	float value;
+	value = atan(abs(y /x));//For theta in QI:
+	if (x == 0) {
+		if (y > 0)
+			value = M_PI_2;
+		else 
+			value = -M_PI_2;
+	} else if (x > 0) {
+		if (y < 0) //For theta in QIV: 
+			value = 2*M_PI - value;
+	} else {
+		if (y > 0)//For theta in QII:
+			value = M_PI - value;
+		else // For theta in QIII
+			value = M_PI + value;
+	}
+	return value;
 }
 
 

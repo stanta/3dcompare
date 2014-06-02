@@ -15,7 +15,7 @@ public:
 
 private:
 	// members
-	StlFile*	m_stlFile;
-	StlFile*	m_tmpStlFile;
+	StlFile*	m_stlFile1;
+	StlFile*	m_stlFile2;
 };
 #endif  // StlCompare_H

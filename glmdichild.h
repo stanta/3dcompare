@@ -18,6 +18,7 @@ public:
 	bool	save();
 	bool	saveAs();
 	bool	saveAsSphere();
+	bool	saveAsNormalFrequency();
 	bool	saveFile(const QString &fileName);
 	bool	saveImage();
 	QString userFriendlyCurrentFile();

@@ -14,11 +14,27 @@
 class StlSphere
 {
 public:
+/*
+	struct Sp_Normal
+	{
+		float polar;
+		float azimuth;
+	};
+*/
+	struct NormalFrequency
+	{
+		short	x_pos;
+		short	y_pos;
+		short	z_pos;
+		int		frequency;
+	};
+
 	struct Spherical
 	{
 		float	radial[3];
 		float	polar[3];
 		float	azimuth[3];
+		//Sp_Normal	normal;
 	};
 
 	struct UnitStats // unit Sphere data
@@ -36,7 +52,7 @@ public:
 		float		minRadial;		// minimal radial of the unit mesh
 	};
 	
-	StlSphere();
+	StlSphere(int devideSphere);
 	~StlSphere();
 
 	void	allocate(int numFacets);
@@ -45,21 +61,26 @@ public:
 	void	setUnitSphere(std::vector<Facet>* facet, Stl_Stats * stats);
 	UnitStats	getStats() { return m_UnitStats; }	
 	Spherical	getSpherical(int i) const { return m_vSpherical[i]; };
+	void		writeAsNormalFrequency(const ::std::string&);	
 
 private:
 	void	setMinMaxRadial(Vector* vector );
-	void	setSphericalItem(Vector* vector, int i);
+	void	setSphericalItem(std::vector<Facet>* fac, int i);
 	void	cartesianToSphere(int m, int n, double c[], double x[], double r[], double theta[]);
 	void	facetMassCalc(std::vector<Facet>* fac, Stl_Stats * stats);
 	float	getArea(Facet *facet);
 	void	calculateNormal(float normal[], Facet *facet);
 	void	normalizeVector(float v[]);
+	void	setNormalFrequency(float x, float y, float z);
+	float	calcAtan(float x, float y);
 
 	// members
 	std::vector<Spherical>	m_vSpherical;
 	UnitStats	m_UnitStats;
 	float		m_maxRadial; // we get max radial and using this we 
 						//doing unit trsnsform of the mesh
+	int		m_devideSphere; // = 36  (10 deg)
+	std::vector<NormalFrequency>	m_vNormalFreq;	
 };
 
 

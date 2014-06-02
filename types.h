@@ -40,7 +40,4 @@ struct Stl_Stats
 	float           volume;
 	float           surface;
 };
-
-
-
 #endif  // TYPES_H
