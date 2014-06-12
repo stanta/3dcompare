@@ -10,6 +10,7 @@
 #include "dimensionsgroupbox.h"
 #include "meshinformationgroupbox.h"
 #include "propertiesgroupbox.h"
+#include "stlcompare.h"
 
 STLViewer::STLViewer(QWidget *parent, Qt::WFlags flags)
     : QMainWindow(parent, flags) {
@@ -106,6 +107,43 @@ void STLViewer::saveAsNormalFrequency()
 	if (activeGLMdiChild() && activeGLMdiChild()->saveAsNormalFrequency())
 		statusBar()->showMessage(tr("File saved as Normal Frequency"), 2000);
 }
+
+void STLViewer::compareLastMeshes()
+{
+	QList<QMdiSubWindow *> subList = mdiArea->subWindowList();
+	int subSize = subList.size();
+	if (subSize > 1) {
+		statusBar()->showMessage(tr("Compare last two meshes"), 2000);
+
+		GLMdiChild *child1 = qobject_cast<GLMdiChild *>(subList.at(subSize-1)->widget());
+		GLMdiChild *child2 = qobject_cast<GLMdiChild *>(subList.at(subSize-2)->widget());
+		StlCompare	compare;
+		
+		char res = compare.init (child1->m_stlFile, child2->m_stlFile);
+		if (res != -1) {
+			char buf[4];
+			_itoa(res, buf, 10);
+			QMessageBox msgBox;
+			QRect geo = msgBox.geometry();
+			msgBox.resize (geo.width () + 40, geo.height () + 20);
+			msgBox.setText("Result of the Huffman Code.");
+
+			QString	str = "first file: "; 			
+			str += child1->m_curFile ;
+			str += "\n"; 
+			str += "second file: "; 			
+			str += child2->m_curFile;
+			str += "\n\n"; 
+			str += "The percent equality of two mesh is ";
+			str += buf;
+			str += "%";
+			msgBox.setInformativeText(str);			
+			msgBox.exec();
+		}
+
+	}
+}
+
 
 
 void STLViewer::saveImage()
@@ -215,11 +253,13 @@ void STLViewer::updateMenus()
 		saveAsAct->setEnabled(true);
 		saveAsSphereAct->setEnabled(true);
 		saveAsNormalFreqAct->setEnabled(true);
+		compareLastMeshesAct->setEnabled(true);
 	} else {
 		saveAct->setEnabled(false);
 		saveAsAct->setEnabled(false);
 		saveAsSphereAct->setEnabled(false);
 		saveAsNormalFreqAct->setEnabled(false);
+		compareLastMeshesAct->setEnabled(false);
 	}
 	saveImageAct->setEnabled(hasGLMdiChild);
 	closeAct->setEnabled(hasGLMdiChild);
@@ -270,54 +310,56 @@ void STLViewer::updateMenus()
 	}
 }
 
-void STLViewer::updateWindowMenu() {
-  windowMenu->clear();
-  windowMenu->addAction(closeAct);
-  windowMenu->addAction(closeAllAct);
-  windowMenu->addSeparator();
-  windowMenu->addAction(tileAct);
-  windowMenu->addAction(cascadeAct);
-  windowMenu->addSeparator();
-  windowMenu->addAction(nextAct);
-  windowMenu->addAction(previousAct);
-  windowMenu->addAction(separatorAct);
-  QList<QMdiSubWindow *> windows = mdiArea->subWindowList();
-  separatorAct->setVisible(!windows.isEmpty());
-  for (int i = 0; i < windows.size(); ++i) {
-    GLMdiChild *child = qobject_cast<GLMdiChild *>(windows.at(i)->widget());
-    QString text;
-    if (i < 9) {
-      text = tr("&%1 %2").arg(i + 1).arg(child->userFriendlyCurrentFile());
-    } else {
-      text = tr("%1 %2").arg(i + 1).arg(child->userFriendlyCurrentFile());
-    }
-    QAction *action  = windowMenu->addAction(text);
-    action->setCheckable(true);
-    action ->setChecked(child == activeGLMdiChild());
-    connect(action, SIGNAL(triggered()), windowMapper, SLOT(map()));
-    windowMapper->setMapping(action, windows.at(i));
-  }
+void STLViewer::updateWindowMenu()
+{
+	windowMenu->clear();
+	windowMenu->addAction(closeAct);
+	windowMenu->addAction(closeAllAct);
+	windowMenu->addSeparator();
+	windowMenu->addAction(tileAct);
+	windowMenu->addAction(cascadeAct);
+	windowMenu->addSeparator();
+	windowMenu->addAction(nextAct);
+	windowMenu->addAction(previousAct);
+	windowMenu->addAction(separatorAct);
+	QList<QMdiSubWindow *> windows = mdiArea->subWindowList();
+	separatorAct->setVisible(!windows.isEmpty());
+	for (int i = 0; i < windows.size(); ++i) {
+		GLMdiChild *child = qobject_cast<GLMdiChild *>(windows.at(i)->widget());
+		QString text;
+		if (i < 9)
+			text = tr("&%1 %2").arg(i + 1).arg(child->userFriendlyCurrentFile());
+		else
+			text = tr("%1 %2").arg(i + 1).arg(child->userFriendlyCurrentFile());
+
+		QAction *action  = windowMenu->addAction(text);
+		action->setCheckable(true);
+		action ->setChecked(child == activeGLMdiChild());
+		connect(action, SIGNAL(triggered()), windowMapper, SLOT(map()));
+		windowMapper->setMapping(action, windows.at(i));
+	}
 }
 
 void STLViewer::setMousePressed(Qt::MouseButtons button) {
-  if (button & Qt::RightButton) {
-    rotateAct->setChecked(true);
-  } else if (button & Qt::MidButton) {
-    panningAct->setChecked(true);
-  }
+	if (button & Qt::RightButton) {
+		rotateAct->setChecked(true);
+	} else if (button & Qt::MidButton) {
+		panningAct->setChecked(true);
+	}
 }
 
 void STLViewer::setMouseReleased(Qt::MouseButtons button) {
-  if (button & Qt::RightButton) {
-    if (leftMouseButtonMode != GLWidget::ROTATE)
-      rotateAct->setChecked(false);
-  } else if (button & Qt::MidButton) {
-    if (leftMouseButtonMode != GLWidget::PANNING)
-      panningAct->setChecked(false);
-  }
+	if (button & Qt::RightButton) {
+		if (leftMouseButtonMode != GLWidget::ROTATE)
+			rotateAct->setChecked(false);
+	} else if (button & Qt::MidButton) {
+		if (leftMouseButtonMode != GLWidget::PANNING)
+			panningAct->setChecked(false);
+	}
 }
 
-GLMdiChild *STLViewer::createGLMdiChild() {
+GLMdiChild *STLViewer::createGLMdiChild()
+{
   GLMdiChild *child = new GLMdiChild;
   mdiArea->addSubWindow(child);
   child->setLeftMouseButtonMode(leftMouseButtonMode);
@@ -338,13 +380,15 @@ GLMdiChild *STLViewer::createGLMdiChild() {
   return child;
 }
 
-void STLViewer::setActiveSubWindow(QWidget *window) {
+void STLViewer::setActiveSubWindow(QWidget *window)
+{
   if (!window)
-    return;
+		return;
   mdiArea->setActiveSubWindow(qobject_cast<QMdiSubWindow *>(window));
 }
 
-void STLViewer::destroyGLMdiChild() {
+void STLViewer::destroyGLMdiChild()
+{
   if (activeGLMdiChild() == 0) {
     panningAct->setChecked(false);
     rotateAct->setChecked(false);
@@ -385,6 +429,11 @@ void STLViewer::createActions()
 	saveAsNormalFreqAct->setShortcut(QKeySequence::UnknownKey);
 	saveAsNormalFreqAct->setStatusTip(tr("Save as Normal Frequency "));
 	connect(saveAsNormalFreqAct, SIGNAL(triggered()), this, SLOT(saveAsNormalFrequency()));
+
+	compareLastMeshesAct = new QAction(tr("Compare last two meshes"), this);
+	compareLastMeshesAct->setShortcut(QKeySequence::UnknownKey);
+	compareLastMeshesAct->setStatusTip(tr("Compare last two meshes "));
+	connect(compareLastMeshesAct, SIGNAL(triggered()), this, SLOT(compareLastMeshes()));
 
 	saveImageAct = new QAction(tr("Save Image..."), this);
 	saveImageAct->setShortcut(tr("Ctrl+I"));
@@ -523,7 +572,8 @@ void STLViewer::createActions()
   connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
 }
 
-void STLViewer::createMenus() {
+void STLViewer::createMenus()
+{
   fileMenu = menuBar()->addMenu(tr("&File"));
   fileMenu->addAction(m_newAct);
   fileMenu->addAction(openAct);
@@ -531,6 +581,7 @@ void STLViewer::createMenus() {
   fileMenu->addAction(saveAsAct);
   fileMenu->addAction(saveAsSphereAct);
   fileMenu->addAction(saveAsNormalFreqAct);
+  fileMenu->addAction(compareLastMeshesAct);
   fileMenu->addAction(saveImageAct);
   fileMenu->addSeparator();
   fileMenu->addAction(exitAct);
@@ -564,7 +615,8 @@ void STLViewer::createMenus() {
   helpMenu->addAction(aboutAct);
 }
 
-void STLViewer::createToolBars() {
+void STLViewer::createToolBars()
+{
 	m_fileToolBar = addToolBar(tr("File"));
 	m_fileToolBar->addAction(m_newAct);
 
@@ -593,11 +645,13 @@ void STLViewer::createToolBars() {
 	m_viewToolBar->setMaximumHeight (28);
 }
 
-void STLViewer::createStatusBar() {
+void STLViewer::createStatusBar()
+{
   statusBar()->showMessage(tr("Ready"));
 }
 
-void STLViewer::createDockWindows() {
+void STLViewer::createDockWindows()
+{
   // Create a DockWidget named "Informations"
   QDockWidget *dock = new QDockWidget(tr("Model Informations"), this);
   dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
@@ -641,7 +695,8 @@ void STLViewer::createDockWindows() {
   viewMenu->addAction(dock->toggleViewAction());
 }
 
-void STLViewer::readSettings() {
+void STLViewer::readSettings()
+{
   QSettings settings("Ayvah", "STLSearcher");
   curDir = settings.value("dir", QString()).toString();
   QPoint pos = settings.value("pos", QPoint(200, 200)).toPoint();
@@ -657,13 +712,15 @@ void STLViewer::writeSettings() {
   settings.setValue("size", size());
 }
 
-GLMdiChild *STLViewer::activeGLMdiChild() {
+GLMdiChild *STLViewer::activeGLMdiChild()
+{
   if (QMdiSubWindow *activeSubWindow = mdiArea->activeSubWindow())
     return qobject_cast<GLMdiChild *>(activeSubWindow->widget());
   return 0;
 }
 
-QMdiSubWindow *STLViewer::findGLMdiChild(const QString &fileName) {
+QMdiSubWindow *STLViewer::findGLMdiChild(const QString &fileName)
+{
   QString canonicalFilePath = QFileInfo(fileName).canonicalFilePath();
 
   foreach (QMdiSubWindow *window, mdiArea->subWindowList()) {

@@ -15,10 +15,12 @@ HEADERS += axisglwidget.h \
 		glwidget.h \
 		meshinformationgroupbox.h \
 		propertiesgroupbox.h \
+		stlcompare.h \
 		stlfile.h \
+		stlsphere.h \
 		stlviewer.h\
 		vector.h  \
-		stlsearcher.h  
+		types.h  
 
 SOURCES += axisglwidget.cpp \
 		axisgroupbox.cpp \
@@ -28,10 +30,11 @@ SOURCES += axisglwidget.cpp \
 		glwidget.cpp \
 		meshinformationgroupbox.cpp \
 		propertiesgroupbox.cpp \
+		stlcompare.cpp \
 		stlfile.cpp \
+		stlsphere.cpp \		
 		stlviewer.cpp \
-		vector.cpp \
-		stlsearcher.cpp  
+		vector.cpp 
 		
 #FORMS += 	src/mainwindow.ui \
 
@@ -42,8 +45,6 @@ CONFIG += warn_on \
 	
 RESOURCES += stlsearcher.qrc
 #RC_FILE += GameControl.rc
-
-#include(stl_source/stl_source.pri)
 
 # set mysql plugin path
 #unix:MYSQL_DIR = /usr/include/mysql 

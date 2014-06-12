@@ -56,12 +56,12 @@ public:
 	~StlSphere();
 
 	void	allocate(int numFacets);
-	void	close();	
 	int		getMinRadial(int index);
 	void	setUnitSphere(std::vector<Facet>* facet, Stl_Stats * stats);
 	UnitStats	getStats() { return m_UnitStats; }	
 	Spherical	getSpherical(int i) const { return m_vSpherical[i]; };
 	void		writeAsNormalFrequency(const ::std::string&);	
+	std::vector<NormalFrequency>* getNormalFrequency() { return & m_vNormalFreq; }
 
 private:
 	void	setMinMaxRadial(Vector* vector );
@@ -69,8 +69,8 @@ private:
 	void	cartesianToSphere(int m, int n, double c[], double x[], double r[], double theta[]);
 	void	facetMassCalc(std::vector<Facet>* fac, Stl_Stats * stats);
 	float	getArea(Facet *facet);
-	void	calculateNormal(float normal[], Facet *facet);
-	void	normalizeVector(float v[]);
+	void	calculateNormal( Facet *facet);
+	void	normalizeVector(Normal* normal);
 	void	setNormalFrequency(float x, float y, float z);
 	float	calcAtan(float x, float y);
 
@@ -82,8 +82,6 @@ private:
 	int		m_devideSphere; // = 36  (10 deg)
 	std::vector<NormalFrequency>	m_vNormalFreq;	
 };
-
-
 
 #endif  // STLStlSphere_H
 /*

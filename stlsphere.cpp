@@ -53,11 +53,6 @@ StlSphere::StlSphere(int devideSphere)
 
 StlSphere::~StlSphere()
 {
-	close();
-}
-
-void StlSphere::close()
-{
 	m_vSpherical.clear();
 }
 
@@ -149,6 +144,8 @@ void	StlSphere::setUnitSphere(std::vector<Facet>* pfacet, Stl_Stats * stats)
 		// get surface of the unit mesh 
 		float area = getArea(&pfacet->at(i));
 		m_UnitStats.surface += area;
+		setNormalFrequency(pfacet->at(i).normal.x ,pfacet->at(i).normal.y,
+					pfacet->at(i).normal.z);
 	}
 	m_UnitStats.averageRadial /= (3*stats->numFacets);
 	
@@ -295,7 +292,7 @@ void	StlSphere::setSphericalItem(std::vector<Facet>* fac , int ind)
 		m_vSpherical[ind].polar[i] = acos(vector[i].z / m_vSpherical[ind].radial[i]);
 		m_vSpherical[ind].azimuth[i] = calcAtan(vector[i].x,vector[i].y);
 	}
-	setNormalFrequency(fac->at(ind).normal.x ,fac->at(ind).normal.y,fac->at(ind).normal.z);
+
 
 /*
 	// set normal value		
@@ -344,6 +341,7 @@ float StlSphere::getArea(Facet *facet)
 {
 	float cross[3][3];
 	float sum[3];
+	//.
 	float n[3];
 	for (int i = 0; i < 3; i++) {
 		cross[i][0] = ((facet->vector[i].y * facet->vector[(i + 1) % 3].z) -
@@ -357,13 +355,17 @@ float StlSphere::getArea(Facet *facet)
 	sum[1] = cross[0][1] + cross[1][1] + cross[2][1];
 	sum[2] = cross[0][2] + cross[1][2] + cross[2][2];
 	// This should already be done.  But just in case, let's do it again
-	calculateNormal(n, facet);
-	normalizeVector(n);
-	float area = 0.5 * (n[0] * sum[0] + n[1] * sum[1] + n[2] * sum[2]);
+	//calculateNormal(n, facet);
+	//normalizeVector(n);
+	//float area = 0.5 * (n[0] * sum[0] + n[1] * sum[1] + n[2] * sum[2]);
+	calculateNormal( facet);
+	normalizeVector(&facet->normal);
+	float area = 0.5 * (facet->normal.x * sum[0] + facet->normal.y * sum[1] + facet->normal.z * sum[2]);
+
 	return area;
 }
 
-void StlSphere::calculateNormal(float normal[], Facet *facet) 
+void StlSphere::calculateNormal( Facet *facet) 
 {
 	float v1[3];
 	float v2[3];
@@ -373,30 +375,30 @@ void StlSphere::calculateNormal(float normal[], Facet *facet)
 	v2[0] = facet->vector[2].x - facet->vector[0].x;
 	v2[1] = facet->vector[2].y - facet->vector[0].y;
 	v2[2] = facet->vector[2].z - facet->vector[0].z;
-	normal[0] = (float)((double)v1[1] * (double)v2[2])
+	facet->normal.x = (float)((double)v1[1] * (double)v2[2])
 		          - ((double)v1[2] * (double)v2[1]);
-	normal[1] = (float)((double)v1[2] * (double)v2[0])
+	facet->normal.y = (float)((double)v1[2] * (double)v2[0])
 		          - ((double)v1[0] * (double)v2[2]);
-	normal[2] = (float)((double)v1[0] * (double)v2[1])
+	facet->normal.z = (float)((double)v1[0] * (double)v2[1])
 			      - ((double)v1[1] * (double)v2[0]);
 }
 
-void StlSphere::normalizeVector(float v[]) 
+void StlSphere::normalizeVector(Normal* v) 
 {
-	double length = sqrt((double)v[0] * (double)v[0]
-                       + (double)v[1] * (double)v[1]
-                          + (double)v[2] * (double)v[2]);
+	double length = sqrt((double)v->x * (double)v->x
+                       + (double)v->y * (double)v->y
+                          + (double)v->z * (double)v->z);
 	float minNormalLength = 0.000000000001f;
 	if (length < minNormalLength) {
-		v[0] = 1.0;
-		v[1] = 0.0;
-		v[2] = 0.0;
+		v->x = 1.0;
+		v->y = 0.0;
+		v->z = 0.0;
 		return;
 	}  
 	double factor = 1.0 / length;
-	v[0] *= factor;
-	v[1] *= factor;
-	v[2] *= factor;
+	v->x *= factor;
+	v->y *= factor;
+	v->z *= factor;
 }
 
 

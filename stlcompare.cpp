@@ -1,18 +1,91 @@
 // Copyright (c) 2014 Andranik Abrahamyan
 
 #include "stlfile.h"
+#include "stlsphere.h"
 #include "stlcompare.h"
 
 StlCompare::StlCompare()
 {
+	m_stlFile1 = 0;
+	m_stlFile2 = 0;
+	m_deleteStl = false;
 }
+
 	
 StlCompare::~StlCompare()
 {
+	if(m_deleteStl) {
+		if (m_stlFile1)
+			delete	m_stlFile1;
+		if (m_stlFile2)
+			delete	m_stlFile2;
+	}
 }
 
+char	StlCompare::init(std::string &fileName1, std::string &fileName2)
+{
+	m_deleteStl = true;
+	m_stlFile1 = new StlFile;
+	if (!m_stlFile1->open (fileName1)) {
+		::std::cerr << "The file " << fileName1 << " not a correct STL file." << ::std::endl;
+		return -1;
+	}
+	if (fileName2.size() > 0) {
+		m_stlFile2 = new StlFile;
+		if(!m_stlFile2->open (fileName2)) {
+			::std::cerr << "The file " << fileName2 << " not a correct STL file." << ::std::endl;
+			return -1;
+		}		
+	}
+	return	getHuffman_Code();
+}
+char	StlCompare::init(StlFile* stlFile1, StlFile* stlFile2)
+{
+	m_stlFile1 = stlFile1;
+	m_stlFile2 = stlFile2;
+	return	getHuffman_Code();
+}
 
-
+// compare 2 stl files Huffman_Code, returnd by procent
+char	StlCompare::getHuffman_Code()
+{
+	char res  = 0;
+	if(m_stlFile2 == 0)
+		return res;
+	std::vector<StlSphere::NormalFrequency>* freq1; 
+	std::vector<StlSphere::NormalFrequency>* freq2;
+	freq1 = m_stlFile1->m_stlSphere->getNormalFrequency ();
+	freq2 = m_stlFile2->m_stlSphere->getNormalFrequency ();
+	int total_freq1 = 0;
+	int total_freq2 = 0;
+	for (int j = 0; j < freq2->size() ; j++) 
+		total_freq2 += freq2->at(j).frequency ;
+	
+	int common_freq = 0;
+	for (int i = 0; i < freq1->size() ; i++) {
+		short x_pos = freq1->at(i).x_pos ;
+		short y_pos = freq1->at(i).y_pos ;
+		short z_pos = freq1->at(i).z_pos ;
+		int	  frequency =  freq1->at(i).frequency ;
+		total_freq1 += frequency;
+		for (int j = 0; j < freq2->size() ; j++) {
+			if( freq2->at(j).x_pos == x_pos &&
+				freq2->at(j).y_pos == y_pos &&
+				freq2->at(j).z_pos == z_pos ) 
+			{
+				common_freq += std::min(freq2->at(j).frequency, frequency);
+				break;
+			}
+		}
+	}
+	float res1  = (common_freq*100)/total_freq1 ;
+	float res2  = (common_freq*100)/total_freq2 ;
+	res1 += res2;
+	res1 /= 2;
+	res = (char)res1;
+	
+	return res;
+}
 
 
 /*

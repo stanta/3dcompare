@@ -6,8 +6,7 @@
 
 GLMdiChild::GLMdiChild(QWidget *parent) : GLWidget(parent)
 {
-	m_stlSphere = new StlSphere(36); // by 10deg
-	m_stlFile = new StlFile(m_stlSphere);
+	m_stlFile = new StlFile();
 
 	setAttribute(Qt::WA_DeleteOnClose);
 	m_isUntitled = true;	
@@ -16,7 +15,6 @@ GLMdiChild::GLMdiChild(QWidget *parent) : GLWidget(parent)
 GLMdiChild::~GLMdiChild()
 {
   delete	m_stlFile;
-  delete	m_stlSphere;
 }
 
 void GLMdiChild::newFile()
@@ -33,7 +31,11 @@ bool GLMdiChild::loadFile(const QString &fileName)
 		QApplication::setOverrideCursor(Qt::WaitCursor);
 		// Open the file and make an object from its content
 		std::string utf8_fileName = fileName.toUtf8().constData();
-		m_stlFile->open(utf8_fileName);
+		if (!m_stlFile->open(utf8_fileName)) {
+			::std::cerr << "The file " << utf8_fileName << " not a correct STL file." << ::std::endl;
+			return false;
+		}
+
 		makeObjectFromStlFile(m_stlFile);
 		updateGL();
 		setCurrentFile(fileName);
@@ -109,7 +111,7 @@ bool GLMdiChild::saveAsNormalFrequency()
 		std::string utf8_fileName = m_curFile.toUtf8().constData();
 		utf8_fileName.erase (utf8_fileName.end() -3, utf8_fileName.end()); 
 		utf8_fileName.append ("nfr");
-		m_stlSphere->writeAsNormalFrequency(utf8_fileName);
+		m_stlFile->m_stlSphere->writeAsNormalFrequency(utf8_fileName);
 		QApplication::restoreOverrideCursor();
 		//setCurrentFile(fileName);
 		return true;
@@ -127,7 +129,6 @@ bool GLMdiChild::saveAsNormalFrequency()
 		return false;
 	}	
 }
-
 
 bool GLMdiChild::saveAs()
 {
@@ -207,8 +208,8 @@ QString GLMdiChild::userFriendlyCurrentFile()
 }
 
 void GLMdiChild::closeEvent(QCloseEvent *event) {
-	m_stlFile->close();
-	m_stlSphere->close();
+//	m_stlFile->close();
+//	m_stlSphere->close();
 	if (maybeSave())
 		event->accept();
 	else 

@@ -25,7 +25,7 @@ public:
 	QString currentFile() { return m_curFile; }
 	Stl_Stats getStats() const { return m_stlFile->getStats(); }
 	StlSphere::UnitStats getSearcherStats() const
-	{ return m_stlSphere->getStats(); }
+	{ return m_stlFile->m_stlSphere->getStats(); }
 
 signals:
 	void	mouseButtonPressed(Qt::MouseButtons button);
@@ -43,10 +43,9 @@ private:
 
 public:
 	bool	m_isUntitled;
-private:
+//private:
 	StlFile *		m_stlFile;
 	QString			m_curFile;
-	StlSphere*		m_stlSphere;
 };
 
 #endif  // GLMDICHILD_H
