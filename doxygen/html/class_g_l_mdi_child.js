@@ -1,0 +1,28 @@
+var class_g_l_mdi_child =
+[
+    [ "GLMdiChild", "class_g_l_mdi_child.html#a068b6aea487bfdd588cd8b7181064995", null ],
+    [ "~GLMdiChild", "class_g_l_mdi_child.html#ae6404458ec13a5f5208de0d27ca3ac4c", null ],
+    [ "closeEvent", "class_g_l_mdi_child.html#afd65746ae770c688f47e706c5edbee74", null ],
+    [ "currentFile", "class_g_l_mdi_child.html#ae8e1a81879ee8f17b2d1f9000eb8631d", null ],
+    [ "getSearcherStats", "class_g_l_mdi_child.html#af3263b60e9a0992e24a2f6bb55a39073", null ],
+    [ "getStats", "class_g_l_mdi_child.html#a34451ef2cb3b8f2de06a92e09a051114", null ],
+    [ "loadFile", "class_g_l_mdi_child.html#ae069c4cc687a76095e5de2f1010d24a4", null ],
+    [ "maybeSave", "class_g_l_mdi_child.html#ad92ff855d0cdbdcfb7fd32418d09db67", null ],
+    [ "mouseButtonPressed", "class_g_l_mdi_child.html#ad417573de1b03d0b666175b8c6338f96", null ],
+    [ "mouseButtonReleased", "class_g_l_mdi_child.html#a637c596a04ee610f9100cbca2146f4a3", null ],
+    [ "mousePressEvent", "class_g_l_mdi_child.html#af2bed86eefd48ca58efaa6dba0c9f0de", null ],
+    [ "mouseReleaseEvent", "class_g_l_mdi_child.html#adc1cd5d988f8ac6117b9be6d4877e715", null ],
+    [ "newFile", "class_g_l_mdi_child.html#ad2c05881821d5cd24396ee6fbea464fc", null ],
+    [ "save", "class_g_l_mdi_child.html#a100e46ccd9bfcf5ee4804207fa4bb417", null ],
+    [ "saveAs", "class_g_l_mdi_child.html#a1ede02837e8fcde77ae8dc3eb2a7a460", null ],
+    [ "saveAsNormalFrequency", "class_g_l_mdi_child.html#ae89a50b9a8cc5f79ee85550424f6c6f8", null ],
+    [ "saveAsSphere", "class_g_l_mdi_child.html#ab2d76d0e43bd455de9d76f0baa81d7e5", null ],
+    [ "saveFile", "class_g_l_mdi_child.html#a1c0740355616326dc137ad8e81487470", null ],
+    [ "saveImage", "class_g_l_mdi_child.html#a927efb59dc6e8964f0b9ce027bd95d67", null ],
+    [ "setCurrentFile", "class_g_l_mdi_child.html#aabedf19de7627ebfb67c53f5080c7440", null ],
+    [ "strippedName", "class_g_l_mdi_child.html#ae8cf498cede6e6681924c40657d102d9", null ],
+    [ "userFriendlyCurrentFile", "class_g_l_mdi_child.html#abd542d12b4e66c0d63bd70509f8f81cd", null ],
+    [ "m_curFile", "class_g_l_mdi_child.html#a36a65cc001a9c8b2084a2e055a38de65", null ],
+    [ "m_isUntitled", "class_g_l_mdi_child.html#ab298ca557b41338fc9d46324414fcf51", null ],
+    [ "m_stlFile", "class_g_l_mdi_child.html#a1732f423596f5870fc69341822a04504", null ]
+];

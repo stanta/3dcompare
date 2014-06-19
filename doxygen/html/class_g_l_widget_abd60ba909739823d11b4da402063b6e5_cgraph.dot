@@ -1,0 +1,17 @@
+digraph "setDefaultView"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="setDefaultView",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="setTopFrontLeftView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html#a89e09d2f1c3732f3bf3dc36334382571"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="setXRotation",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html#a59cabf1708863e82bdfced18dc630e37"];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="setYRotation",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html#a38ddca1c05cad19158b0a88b172e857a"];
+  Node2 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="setZRotation",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html#a6cb4ef9b53294acc68dd22f74cebfbe9"];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="unzoom",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html#aa237b3a0b0027c19064ca92640cf9480"];
+}

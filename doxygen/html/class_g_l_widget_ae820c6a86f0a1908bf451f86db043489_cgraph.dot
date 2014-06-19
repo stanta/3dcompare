@@ -1,0 +1,15 @@
+digraph "mouseMoveEvent"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="mouseMoveEvent",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="setXTranslation",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html#a6dc6fc918aea20c9a764a6460882e37e"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="setYTranslation",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html#a60170256233255922f2440173d2b612e"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="setXRotation",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html#a59cabf1708863e82bdfced18dc630e37"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="setZRotation",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html#a6cb4ef9b53294acc68dd22f74cebfbe9"];
+}

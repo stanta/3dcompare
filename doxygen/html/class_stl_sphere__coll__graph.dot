@@ -1,0 +1,6 @@
+digraph "StlSphere"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{StlSphere\n||+ StlSphere()\l+ ~StlSphere()\l+ allocate()\l+ getMinRadial()\l+ setUnitSphere()\l+ getStats()\l+ getSpherical()\l+ writeAsNormalFrequency()\l+ getNormalFrequency()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+}

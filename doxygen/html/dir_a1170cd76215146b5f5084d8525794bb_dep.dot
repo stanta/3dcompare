@@ -1,0 +1,13 @@
+digraph "3DSearch" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_5fc0168d11760b9445bd29fa15d9290f {
+    graph [ bgcolor="#ddddee", pencolor="black", label="dev" fontname="Helvetica", fontsize="10", URL="dir_5fc0168d11760b9445bd29fa15d9290f.html"]
+  subgraph clusterdir_a1170cd76215146b5f5084d8525794bb {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_a1170cd76215146b5f5084d8525794bb.html"];
+    dir_a1170cd76215146b5f5084d8525794bb [shape=plaintext label="3DSearch"];
+    dir_9b25e8bdfd744a8dbcf057a505b724bf [shape=box label="STLSearcher_dox" color="black" fillcolor="white" style="filled" URL="dir_9b25e8bdfd744a8dbcf057a505b724bf.html"];
+  }
+  }
+}

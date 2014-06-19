@@ -19,6 +19,12 @@ class QMdiArea;
 class QMdiSubWindow;
 class QSignalMapper;
 
+/*! \brief  The STLViewer class provides a main application window.
+*
+*	STLViewer has its own layout to which added QToolBars, QMenuBar, QStatusBar, 
+*     AxisGroupBox, DimensionsGroupBox,MeshInformationGroupBox and and PropertiesGroupBox objects
+*	  STLViewer have multiple (MDI) document interface*/
+
 class STLViewer : public QMainWindow {
 Q_OBJECT
 public:
@@ -30,49 +36,67 @@ signals:
 protected:
 	void	closeEvent(QCloseEvent *event);
 
-private slots:
-	void	newFile();  
-	void	open();
-	void	save();
-	void	saveAs();
-	void	saveAsSphere();
-	void	saveAsNormalFrequency();
-	void	compareLastMeshes();
-	void	saveImage();
-	void	rotate();
-	void	panning();
-	void	zoom();
-	void	unzoom();
-	void	backView();	
-	void	frontView();
-	void	leftView();
-	void	rightView();
-	void	topView();
-	void	bottomView();
-	void	topFrontLeftView();
+private slots:	
+	void	newFile();  //!< new File create action 
+	void	open(); //!< File open action
+	void	save(); //!< File save action
+	void	saveAs(); //!< File save as action
+	void	saveAsSphere(); //!< File save as sphere action	
+	void	saveAsNormalFrequency(); //!< File save as normals frequency action
+	void	compareLastMeshes(); //!< compare last 2 meshes action	
+	void	saveImage(); //!< get snapshot from mesh action
+	void	rotate(); //!< rotate mesh action	
+	void	panning();	//!< panning the mesh action
+	void	zoom();	//!< zoom mesh action
+	void	unzoom(); //!< unzoom mesh action
+	void	backView();	 //!< The mesh back view  action
+	void	frontView(); //!< The mesh front view  action
+	void	leftView(); //!< The mesh left view  action
+	void	rightView(); //!< The mesh right view  action
+	void	topView(); //!< The mesh top view  action
+	void	bottomView(); //!< The mesh bootom view  action
+	void	topFrontLeftView(); //!< The mesh top front left view  action
+	/// wire frame view mesh action
 	void	wireframe();
+	/// radial frame view mesh action
 	void	radialframe();
+	/// about program action
 	void	about();
+	/// update menus for each OpenGL child window
 	void	updateMenus();
+	/// update menus for the window
 	void	updateWindowMenu();
+	/// sets mouse pressed state
 	void	setMousePressed(Qt::MouseButtons button);
+	/// sets mouse released state
 	void	setMouseReleased(Qt::MouseButtons button);
+	/// sets set  active sub window
 	void	setActiveSubWindow(QWidget *window);
+	/// destroy OpenGL Child window
 	void	destroyGLMdiChild();
+	/// creates OpenGL Child window
 	GLMdiChild *	createGLMdiChild();
 
 private:
+	/// creates actions
 	void	createActions();
+	/// creates nenus
 	void	createMenus();
+	/// creates tool bars
 	void	createToolBars();
+	/// creates status bar
 	void	createStatusBar();
+	/// creates dock windows
 	void	createDockWindows();
-	// Reads persistent platform-independent application settings
+	/// Reads persistent platform-independent application settings
 	void	readSettings();
-	// Writes persistent platform-independent application settings
+	/// Writes persistent platform-independent application settings
 	void	writeSettings();
+	/// Gets the active OpenGL window
 	GLMdiChild *	activeGLMdiChild();
+	/// finds the child OpenGL window
 	QMdiSubWindow *	findGLMdiChild(const QString &fileName);
+	/// Mdi area , QMenu, QToolBar, QAction objects
 	QMdiArea *		mdiArea;
 	QSignalMapper*	windowMapper;
 	QMenu *		fileMenu;
@@ -112,11 +136,16 @@ private:
 	QAction *	wireframeAct;
 	QAction *	exitAct;
 	QAction *	aboutAct;
+	/// current directory
 	QString		curDir;
 	GLWidget::LeftMouseButtonMode leftMouseButtonMode;
-	AxisGroupBox *	axisGroupBox;
+	/// AxisGroupBox dock window
+	AxisGroupBox *			axisGroupBox;
+	/// DimensionsGroupBox dock window
 	DimensionsGroupBox *	 dimensionsGroupBox;
+	/// MeshInformationGroupBox dock window
 	MeshInformationGroupBox* meshInformationGroupBox;
+	/// PropertiesGroupBox dock window
 	PropertiesGroupBox *	 propertiesGroupBox;
 };
 #endif // STLVIEWER_H

@@ -1,0 +1,12 @@
+digraph "GLMdiChild"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{GLMdiChild\n|+ m_isUntitled\l+ m_curFile\l|+ GLMdiChild()\l+ ~GLMdiChild()\l+ newFile()\l+ loadFile()\l+ save()\l+ saveAs()\l+ saveAsSphere()\l+ saveAsNormalFrequency()\l+ saveFile()\l+ saveImage()\l+ userFriendlyCurrentFile()\l+ currentFile()\l+ getStats()\l+ getSearcherStats()\l# closeEvent()\l# mousePressEvent()\l# mouseReleaseEvent()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node2 [label="{GLWidget\n||+ GLWidget()\l+ ~GLWidget()\l+ minimumSizeHint()\l+ sizeHint()\l+ makeObjectFromStlFile()\l+ deleteObject()\l+ setDefaultView()\l+ zoom()\l+ unzoom()\l+ setBackView()\land 11 more...\l+ setXRotation()\l+ setYRotation()\l+ setZRotation()\l+ setXTranslation()\l+ setYTranslation()\l+ setZoom()\l+ setLeftMouseButtonMode()\l+ setWireframeMode()\l+ setRadialMode()\l# initializeGL()\l# paintGL()\l# resizeGL()\l# mousePressEvent()\l# mouseReleaseEvent()\l# mouseMoveEvent()\l# wheelEvent()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html"];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node3 [label="{QGLWidget\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node4 -> Node1 [color="grey25",fontsize="10",style="solid",label=" +m_stlFile" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node4 [label="{StlFile\n||+ StlFile()\l+ ~StlFile()\l+ open()\l+ write()\l+ writeAsSphere()\l+ setFormat()\l+ getStats()\l+ getFacet()\l+ getStlSphere()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_stl_file.html"];
+}

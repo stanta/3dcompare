@@ -1,0 +1,29 @@
+digraph "setXRotation"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="setXRotation",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="mouseMoveEvent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html#ae820c6a86f0a1908bf451f86db043489"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="setBackView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html#a69d8f380404e617d9fa51e3f110dd59f"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="setBottomView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html#a3effc85dc5ab0cdbaf8838e4d21268de"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="setFrontView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html#a074f5575f7dc0697faadd2a4b8b73e3d"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="setLeftView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html#a825fc77336c2be4738c423f54441d5bb"];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="setRightView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html#a56b702b3774bf2ff4ed1dc70323df979"];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="setTopFrontLeftView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html#a89e09d2f1c3732f3bf3dc36334382571"];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="setDefaultView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html#abd60ba909739823d11b4da402063b6e5"];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="makeObjectFromStlFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html#a5e1bfb876897fd4ccd4f66da72c6f04f"];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="GLMdiChild::loadFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_mdi_child.html#a8437f8fd71bcf6da5de2a49cbd0b105b"];
+  Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="setTopView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_widget.html#a662faca8bd38f091c5b13f57abf0d243"];
+}

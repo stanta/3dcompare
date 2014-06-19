@@ -1,0 +1,6 @@
+digraph "Vector"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{Vector\n|+ x\l+ y\l+ z\l+ w\l|+ Vector()\l+ Vector()\l+ Vector()\l+ ~Vector()\l+ Magnitude()\l+ Normalize()\l+ Scale()\l+ Dot()\l+ Cross()\l+ operator=()\land 9 more...\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+}

@@ -8,6 +8,9 @@
 #include "stlfile.h"
 
 class QLabel;
+/*! \brief  The MeshInformationGroupBox window shows number of facets and number of points volumes .
+*
+*/
 
 class MeshInformationGroupBox : public QGroupBox 
 {
@@ -15,11 +18,14 @@ class MeshInformationGroupBox : public QGroupBox
 public:
 	MeshInformationGroupBox(QWidget *parent = 0);
 	~MeshInformationGroupBox();
+	/// reset values
 	void reset();
+	/// sets values
 	void setValues(const Stl_Stats stats);
 
 private:
-	QLabel *numFacets, *numPoints;
+	QLabel *numFacets; //!< number of facets 
+	QLabel *numPoints; //!< number of points
 };
 
 #endif  // MESHINFORMATIONGROUPBOX_H

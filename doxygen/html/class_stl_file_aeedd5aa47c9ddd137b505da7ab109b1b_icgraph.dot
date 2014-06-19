@@ -1,0 +1,14 @@
+digraph "write"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="write",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="GLMdiChild::saveFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_mdi_child.html#aee368b2e953c4f7588e5da35d944cb0e"];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="GLMdiChild::save",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_mdi_child.html#a69458f4271dc75dfcceabe6c7b2776b8"];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="GLMdiChild::saveAs",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_mdi_child.html#a8d1ce54677e6e77856db494ebd36bf4a"];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

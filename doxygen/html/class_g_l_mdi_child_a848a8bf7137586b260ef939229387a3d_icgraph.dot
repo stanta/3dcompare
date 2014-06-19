@@ -1,0 +1,9 @@
+digraph "mouseButtonPressed"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="mouseButtonPressed",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="mousePressEvent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_mdi_child.html#ad2272e344e46519f026cd02f419884f1"];
+}

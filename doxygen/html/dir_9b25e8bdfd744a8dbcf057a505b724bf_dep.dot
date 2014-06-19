@@ -1,0 +1,9 @@
+digraph "STLSearcher_dox" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_a1170cd76215146b5f5084d8525794bb {
+    graph [ bgcolor="#ddddee", pencolor="black", label="3DSearch" fontname="Helvetica", fontsize="10", URL="dir_a1170cd76215146b5f5084d8525794bb.html"]
+  dir_9b25e8bdfd744a8dbcf057a505b724bf [shape=box, label="STLSearcher_dox", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_9b25e8bdfd744a8dbcf057a505b724bf.html"];
+  }
+}
