@@ -1,0 +1,8 @@
+#!/bin/bash
+# A.A.D script
+clear
+echo "Stl searcher started. Get files from http://fablab.su site"
+REQUEST_METHOD=GET
+QUERY_STRING=http://fablab.su/images/models_files/custom-temple-2/Custom_Temple_2.zip&http://fablab.su/images/models_files/roman-emperor-walters-art-museum/Roman_Emperor_Walters_Art_Museum.zip
+./search
+

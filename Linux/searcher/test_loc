@@ -1,0 +1,6 @@
+#!/bin/bash
+# A.A.D script
+clear
+echo "Stl searcher started. Get files from locale file system"
+./search venus.stl  venus2.stl
+
